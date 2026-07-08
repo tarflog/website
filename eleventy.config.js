@@ -1,5 +1,6 @@
 module.exports = function (cfg) {
   cfg.addPassthroughCopy({ "assets": "assets" });
+  cfg.addPassthroughCopy("CNAME"); // custom domain tarflog.com
 
   cfg.addFilter("dayNum", (n) => String(n).padStart(4, "0"));
   cfg.addFilter("pad2", (n) => String(n).padStart(2, "0"));
