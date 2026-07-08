@@ -2,7 +2,7 @@
   <p class="tag">INTERCEPT CHANNELS</p>
   <div class="chan-row">
     {% for c in site.channels %}
-    <a class="btn" href="{{ c.url }}" rel="me">{{ c.label }} · {{ c.handle }}</a>
+    <a class="btn" href="{{ c.url }}" target="_blank" rel="noopener me">{{ c.label }} · {{ c.handle }}</a>
     {% endfor %}
     <a class="btn" href="{{ '/feed.xml' | url }}">RSS</a>
   </div>

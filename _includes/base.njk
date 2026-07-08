@@ -35,7 +35,7 @@
   <div class="wrap foot-row">
     <img class="badgephoto" src="{{ '/assets/img/badge-macro.jpg' | url }}" alt="Expedition badge: a horizontal line with an orange dot." loading="lazy">
     <span>{{ site.email }}</span>
-    {% for c in site.channels %}<a href="{{ c.url }}" rel="me">{{ c.label }}</a>{% endfor %}
+    {% for c in site.channels %}<a href="{{ c.url }}" target="_blank" rel="noopener me">{{ c.label }}</a>{% endfor %}
     <a class="cats" href="{{ '/cats/' | url }}">cats</a>
   </div>
 </footer>
