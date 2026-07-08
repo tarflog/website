@@ -8,10 +8,6 @@
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ '/feed.xml' | url }}">
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
-<script>
-/* тема до первой отрисовки, без мигания */
-try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
-</script>
 </head>
 <body>
 <header class="site">
@@ -30,9 +26,6 @@ try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.th
       <a href="{{ '/subject/' | url }}" {% if nav == 'subject' %}aria-current="page"{% endif %}>DOSSIER</a>
       <a href="{{ '/channels/' | url }}" {% if nav == 'channels' %}aria-current="page"{% endif %}>CHANNELS</a>
     </nav>
-    <div class="theme" role="group" aria-label="Theme">
-      <button data-set="terminal" aria-pressed="true">TERMINAL</button><span>/</span><button data-set="paper" aria-pressed="false">PAPER</button>
-    </div>
   </div>
 </header>
 
@@ -46,17 +39,5 @@ try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.th
     <a class="cats" href="{{ '/cats/' | url }}">cats</a>
   </div>
 </footer>
-
-<script>
-document.querySelectorAll('.theme button').forEach(function(b){
-  b.addEventListener('click',function(){
-    document.documentElement.dataset.theme=b.dataset.set;
-    try{localStorage.setItem("theme",b.dataset.set);}catch(e){}
-    document.querySelectorAll('.theme button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
-  });
-});
-var cur=document.documentElement.dataset.theme;
-document.querySelectorAll('.theme button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.set===cur);});
-</script>
 </body>
 </html>
