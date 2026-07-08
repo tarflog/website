@@ -10,7 +10,7 @@ permalink: /channels/
   </div>
   <table>
     {% for c in site.channels %}
-    <tr><th>{{ c.label }}</th><td><a class="btn" href="{{ c.url }}" rel="me">{{ c.handle }}</a></td></tr>
+    <tr><th>{{ c.label }}</th><td><a class="btn" href="{{ c.url }}" target="_blank" rel="noopener me">{{ c.handle }}</a></td></tr>
     {% endfor %}
     <tr><th>SIGNAL ADDRESS</th><td>{{ site.email }}</td></tr>
     <tr><th>RSS</th><td><a class="btn" href="{{ '/feed.xml' | url }}">/feed.xml</a></td></tr>
