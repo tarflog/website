@@ -1,0 +1,24 @@
+---
+layout: base.njk
+---
+<main class="wrap entry">
+  <p class="meta"><span>FILE {{ file }}</span><span>DECLASSIFIED {{ declassified | isoDate }}</span>{% if incident %}<span class="inc-tag">INCIDENT № {{ incident | pad2 }}</span>{% endif %}</p>
+  <h1>DAY {{ day | dayNum }} <span class="r">· {{ rubric }}</span></h1>
+  <div class="text">
+    {% if redact %}{{ content | replace(redact, '<span class="redacted">' + redact + '</span>') | safe }}
+    {% else %}{{ content | safe }}{% endif %}
+  </div>
+  <p class="actions">
+    <a href="https://www.tiktok.com/@tarflog">DISCUSSION: TIKTOK</a>
+    <a href="https://t.me/tarflog">TELEGRAM</a>
+  </p>
+  {% set entries = collections.log %}
+  {% for e in entries %}{% if e.url == page.url %}
+    {% set nxt = entries[loop.index0 - 1] %}
+    {% set prv = entries[loop.index0 + 1] %}
+    <nav class="pager">
+      <span>{% if prv %}<a href="{{ prv.url | url }}">← DAY {{ prv.data.day | dayNum }}</a>{% endif %}</span>
+      <span>{% if nxt %}<a href="{{ nxt.url | url }}">DAY {{ nxt.data.day | dayNum }} →</a>{% endif %}</span>
+    </nav>
+  {% endif %}{% endfor %}
+</main>

@@ -1,0 +1,20 @@
+{
+  "name": "Tarf — Observation Log",
+  "tagline": "Fragments of a field researcher's log, declassified without explanation.",
+  "url": "https://tarflog.github.io/website",
+  "email": "tarf.earth@gmail.com",
+  "channels": [
+    { "label": "TIKTOK", "handle": "@tarflog", "url": "https://www.tiktok.com/@tarflog" },
+    { "label": "YOUTUBE", "handle": "@tarflog", "url": "https://www.youtube.com/@tarflog" },
+    { "label": "INSTAGRAM", "handle": "@tarflog", "url": "https://www.instagram.com/tarflog/" },
+    { "label": "X", "handle": "@tarf_log", "url": "https://x.com/tarf_log" },
+    { "label": "TELEGRAM", "handle": "@tarflog", "url": "https://t.me/tarflog" }
+  ],
+  "quotes": [
+    "Four hundred observations. Zero new information exchanged.",
+    "Usurpation requires intent. I wanted to go home.",
+    "My strategy is standing still. It has not failed yet.",
+    "Things fall out of pockets.",
+    "Humans do not look at each other. Filed."
+  ]
+}

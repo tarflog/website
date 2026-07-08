@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="terminal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} · {% endif %}{{ site.name }}</title>
+<meta name="description" content="{{ description or site.tagline }}">
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | url }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ '/feed.xml' | url }}">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
+<script>
+/* тема до первой отрисовки, без мигания */
+try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
+</script>
+</head>
+<body>
+<header class="site">
+  <div class="wrap site-bar">
+    <a class="brand" href="{{ '/' | url }}">
+      <svg width="26" height="26" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="var(--accent)" stroke-width="6" stroke-dasharray="2 10"/>
+        <line x1="26" y1="60" x2="94" y2="60" stroke="var(--text)" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="74" cy="60" r="8" fill="var(--star)"/>
+      </svg>
+      <b>TARF·LOG</b>
+    </a>
+    <nav class="main" aria-label="Sections">
+      <a href="{{ '/' | url }}" {% if nav == 'log' %}aria-current="page"{% endif %}>THE LOG</a>
+      <a href="{{ '/subject/' | url }}" {% if nav == 'subject' %}aria-current="page"{% endif %}>DOSSIER</a>
+      <a href="{{ '/channels/' | url }}" {% if nav == 'channels' %}aria-current="page"{% endif %}>CHANNELS</a>
+    </nav>
+    <div class="theme" role="group" aria-label="Theme">
+      <button data-set="terminal" aria-pressed="true">TERMINAL</button><span>/</span><button data-set="paper" aria-pressed="false">PAPER</button>
+    </div>
+  </div>
+</header>
+
+{{ content | safe }}
+
+<footer class="site">
+  <div class="wrap foot-row">
+    <img class="badgephoto" src="{{ '/assets/img/badge-macro.jpg' | url }}" alt="Expedition badge: a horizontal line with an orange dot." loading="lazy">
+    <span>{{ site.email }}</span>
+    {% for c in site.channels %}<a href="{{ c.url }}" rel="me">{{ c.label }}</a>{% endfor %}
+    <a class="cats" href="{{ '/cats/' | url }}">cats</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.theme button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.documentElement.dataset.theme=b.dataset.set;
+    try{localStorage.setItem("theme",b.dataset.set);}catch(e){}
+    document.querySelectorAll('.theme button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+  });
+});
+var cur=document.documentElement.dataset.theme;
+document.querySelectorAll('.theme button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.set===cur);});
+</script>
+</body>
+</html>

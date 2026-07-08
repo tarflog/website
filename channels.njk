@@ -1,0 +1,20 @@
+---
+layout: base.njk
+nav: channels
+title: Intercept channels
+permalink: /channels/
+---
+<main class="wrap dossier">
+  <div class="head">
+    <h1>INTERCEPT CHANNELS</h1>
+  </div>
+  <table>
+    {% for c in site.channels %}
+    <tr><th>{{ c.label }}</th><td><a class="btn" href="{{ c.url }}" rel="me">{{ c.handle }}</a></td></tr>
+    {% endfor %}
+    <tr><th>SIGNAL ADDRESS</th><td>{{ site.email }}</td></tr>
+    <tr><th>RSS</th><td><a class="btn" href="{{ '/feed.xml' | url }}">/feed.xml</a></td></tr>
+  </table>
+  <p class="selfnote">Fragments leak to these channels first. Letters are rare and concern declassifications only.</p>
+  {% include "channels-block.njk" %}
+</main>

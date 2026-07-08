@@ -1,0 +1,12 @@
+{
+  "name": "tarflog-site",
+  "private": true,
+  "description": "Tarf — Observation Log. Fragments of a field researcher's log, declassified without explanation.",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

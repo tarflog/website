@@ -1,0 +1,91 @@
+---
+layout: base.njk
+nav: log
+permalink: /
+---
+{% set entries = collections.log %}
+{% set latest = entries[0] %}
+<section class="hero">
+  <div class="bgimg" aria-hidden="true"></div>
+  <div class="stampbox"><span class="stamp">Partially Declassified</span></div>
+  <div class="wrap inner">
+    <div>
+      <p class="rubric">OBSERVATION LOG — <b>EARTH</b></p>
+      <p class="counter mono">entries declassified: <em>{{ entries.length }}</em><span class="caret" aria-hidden="true"></span></p>
+      <p class="quote">“{{ site.quotes[entries.length % site.quotes.length] }}”</p>
+      <p class="glyphs">Γ·λ⊢∩⊐⊙∧＋Ĺ·χ∥—Ⅰ⊙Ν
+        <small>SUBJECT SCRIPT · UNTRANSLATED</small>
+      </p>
+      <div class="access">
+        <div class="card corner">
+          <p class="tag">ACCESS NOTE · APPENDED BY THE SUBJECT</p>
+          <p>This log is internal. It becomes public without my participation.
+             A complaint has been filed. The Council has not responded.
+             Since you are reading it anyway: the entries are accurate, the
+             numbering is not sequential, and I will not discuss
+             <span class="redacted">the cats</span>.</p>
+          <span class="sig">— Tarf</span>
+        </div>
+      </div>
+    </div>
+    <div class="constel" aria-label="Home star chart">
+      <svg viewBox="0 0 300 220" width="100%" role="img" aria-label="Beta Cancri star chart">
+        <circle cx="150" cy="110" r="96" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="150" cy="110" r="96" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="1 6" opacity=".6"/>
+        <polyline points="70,60 122,84 150,110 196,150" fill="none" stroke="var(--accent)" stroke-width="1" opacity=".55"/>
+        <circle cx="70" cy="60" r="2.4" fill="var(--muted)"/>
+        <circle cx="122" cy="84" r="2" fill="var(--muted)"/>
+        <circle cx="196" cy="150" r="2.6" fill="var(--muted)"/>
+        <circle class="star-dot" cx="150" cy="110" r="6" fill="var(--star)"/>
+        <circle cx="150" cy="110" r="12" fill="none" stroke="var(--star)" stroke-width="1" opacity=".5"/>
+        <text x="168" y="106" font-family="Plex Mono,monospace" font-size="11" letter-spacing="2" fill="var(--text)">β CNC</text>
+        <text x="168" y="122" font-family="Plex Mono,monospace" font-size="8" letter-spacing="1.5" fill="var(--muted)">HOME STAR · 290 LY</text>
+      </svg>
+      <div class="meta"><span>SECTOR 07-K</span><span>FILED AS “THE CRAB”</span></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap feed">
+
+  {% if latest %}
+  <article class="doc corner latest">
+    <div>
+      <div class="file"><span><span class="label">LATEST FRAGMENT</span> · FILE {{ latest.data.file }}</span><span class="stamp small">{% if latest.data.rubric == 'RESTRICTED' %}Sealed{% else %}Declassified{% endif %}</span></div>
+      <p class="day"><b>DAY {{ latest.data.day | dayNum }}</b> · {{ latest.data.rubric }}</p>
+      <div class="body">
+        {% if latest.data.redact %}{{ latest.content | replace(latest.data.redact, '<span class="redacted">' + latest.data.redact + '</span>') | safe }}
+        {% else %}{{ latest.content | safe }}{% endif %}
+      </div>
+      <div class="foot"><span>DECLASSIFIED {{ latest.data.declassified | isoDate }}</span><a href="{{ latest.url | url }}">FULL ENTRY →</a></div>
+    </div>
+    <a class="poster" href="{{ latest.url | url }}" aria-label="Open the latest entry">
+      <span class="rec"><i></i>REC · DAY {{ latest.data.day | dayNum }}</span>
+      <span class="hudline"><span>FRAGMENT</span><span>0:16</span></span>
+    </a>
+  </article>
+  {% endif %}
+
+  <div class="grid">
+    {% for e in entries %}{% if not loop.first %}
+    <article class="doc corner {% if e.data.rubric == 'INCIDENT' %}incident{% endif %}">
+      {% if e.data.rubric == 'RESTRICTED' %}<span class="stamp small stamp-over">Sealed</span>{% endif %}
+      <div class="file"><span>FILE {{ e.data.file }}</span>{% if e.data.incident %}<span class="inc-tag">INCIDENT № {{ e.data.incident | pad2 }}</span>{% endif %}</div>
+      <p class="day"><b>DAY {{ e.data.day | dayNum }}</b> · {{ e.data.rubric }}</p>
+      <div class="body">
+        {% if e.data.redact %}{{ e.content | replace(e.data.redact, '<span class="redacted">' + e.data.redact + '</span>') | safe }}
+        {% else %}{{ e.content | safe }}{% endif %}
+      </div>
+      <div class="foot"><span>DECLASSIFIED {{ e.data.declassified | isoDate }}</span><a href="{{ e.url | url }}">FULL ENTRY →</a></div>
+    </article>
+    {% endif %}{% endfor %}
+
+    <figure class="photo-doc">
+      <img src="{{ '/assets/img/evidence-queue.jpg' | url }}" alt="Surveillance photo: a queue at a coffee kiosk; one very tall figure stands unnoticed among the people." loading="lazy">
+      <span class="stamp small">Appendix</span>
+      <figcaption class="cap"><span>SURVEILLANCE APPENDIX · TL-0012-A</span><span>NO WITNESS REPORTS</span></figcaption>
+    </figure>
+  </div>
+
+  {% include "channels-block.njk" %}
+</main>
