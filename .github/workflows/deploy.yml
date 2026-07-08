@@ -20,7 +20,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PATH_PREFIX: /website/    # до подключения tarflog.com; с доменом сменить на /
+      PATH_PREFIX: /            # custom domain tarflog.com serves at root
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
