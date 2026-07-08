@@ -151,6 +151,18 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .dossier .photo img{display:block;width:100%}
 .dossier .photo figcaption{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;color:var(--faint);padding:10px 12px}
 
+/* registry */
+.registry-link{margin:26px 0 0;font-size:.7rem;letter-spacing:.16em}
+.registry-link a{color:var(--muted);text-decoration:none}
+.registry-link a:hover{color:var(--star)}
+.registry th{width:120px}
+.registry th a{color:var(--text);text-decoration:none}
+.registry th a:hover{color:var(--star)}
+.registry td.rub{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--faint);white-space:nowrap}
+.registry td.lede a{color:var(--muted);text-decoration:none;font-size:.95rem}
+.registry td.lede a:hover{color:var(--text)}
+.registry td.date{font-family:var(--mono);font-size:.62rem;color:var(--faint);white-space:nowrap}
+
 /* sealed pages (404 / cats) */
 .sealed-page{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;position:relative;overflow:hidden}
 .sealed-page .bg{position:absolute;inset:0;background:url("../img/glyph-slab.jpg") center/cover no-repeat;opacity:.25}

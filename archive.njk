@@ -1,0 +1,28 @@
+---
+layout: base.njk
+nav: archive
+title: Registry
+permalink: /archive/
+---
+{#
+  Реестр — полный список записей одной страницей.
+  При росте за ~1500 строк включить встроенную пагинацию 11ty:
+  pagination: { data: collections.log, size: 500 } + prev/next.
+#}
+<main class="wrap dossier registry">
+  <div class="head">
+    <h1>REGISTRY OF DECLASSIFIED FRAGMENTS</h1>
+    <span class="stamp small">Sheet 1</span>
+  </div>
+  <table>
+    {% for e in collections.log %}
+    <tr>
+      <th><a href="{{ e.url | url }}">DAY {{ e.data.day | dayNum }}</a></th>
+      <td class="rub">{{ e.data.rubric }}</td>
+      <td class="lede"><a href="{{ e.url | url }}">{{ e.content | striptags | truncate(72) }}</a></td>
+      <td class="date">{{ e.data.declassified | isoDate }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <p class="selfnote">{{ collections.log.length }} fragments declassified. The numbering is not sequential. This is not an error.</p>
+</main>

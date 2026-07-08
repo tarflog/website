@@ -26,6 +26,7 @@ try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.th
     </a>
     <nav class="main" aria-label="Sections">
       <a href="{{ '/' | url }}" {% if nav == 'log' %}aria-current="page"{% endif %}>THE LOG</a>
+      <a href="{{ '/archive/' | url }}" {% if nav == 'archive' %}aria-current="page"{% endif %}>REGISTRY</a>
       <a href="{{ '/subject/' | url }}" {% if nav == 'subject' %}aria-current="page"{% endif %}>DOSSIER</a>
       <a href="{{ '/channels/' | url }}" {% if nav == 'channels' %}aria-current="page"{% endif %}>CHANNELS</a>
     </nav>

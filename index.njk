@@ -67,7 +67,7 @@ permalink: /
   {% endif %}
 
   <div class="grid">
-    {% for e in entries %}{% if not loop.first %}
+    {% for e in entries.slice(1, 12) %}
     <article class="doc corner {% if e.data.rubric == 'INCIDENT' %}incident{% endif %}">
       {% if e.data.rubric == 'RESTRICTED' %}<span class="stamp small stamp-over">Sealed</span>{% endif %}
       <div class="file"><span>FILE {{ e.data.file }}</span>{% if e.data.incident %}<span class="inc-tag">INCIDENT № {{ e.data.incident | pad2 }}</span>{% endif %}</div>
@@ -78,7 +78,7 @@ permalink: /
       </div>
       <div class="foot"><span>DECLASSIFIED {{ e.data.declassified | isoDate }}</span><a href="{{ e.url | url }}">FULL ENTRY →</a></div>
     </article>
-    {% endif %}{% endfor %}
+    {% endfor %}
 
     <figure class="photo-doc">
       <img src="{{ '/assets/img/evidence-queue.jpg' | url }}" alt="Surveillance photo: a queue at a coffee kiosk; one very tall figure stands unnoticed among the people." loading="lazy">
@@ -86,6 +86,8 @@ permalink: /
       <figcaption class="cap"><span>SURVEILLANCE APPENDIX · TL-0012-A</span><span>NO WITNESS REPORTS</span></figcaption>
     </figure>
   </div>
+
+  <p class="registry-link mono"><a href="{{ '/archive/' | url }}">FULL REGISTRY — ALL {{ entries.length }} DECLASSIFIED FRAGMENTS →</a></p>
 
   {% include "channels-block.njk" %}
 </main>
