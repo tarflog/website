@@ -3,6 +3,7 @@
   "tagline": "Fragments of a field researcher's log, declassified without explanation.",
   "url": "https://tarflog.com",
   "email": "tarf.earth@gmail.com",
+  "cfBeacon": "0034522f7f754520b242249ce0175954",
   "channels": [
     { "label": "TIKTOK", "handle": "@tarflog", "url": "https://www.tiktok.com/@tarflog" },
     { "label": "YOUTUBE", "handle": "@tarflog", "url": "https://www.youtube.com/@tarflog" },

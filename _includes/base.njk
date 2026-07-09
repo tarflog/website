@@ -39,5 +39,6 @@
     <a class="cats" href="{{ '/cats/' | url }}">cats</a>
   </div>
 </footer>
+{% if site.cfBeacon %}<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cfBeacon }}"}'></script>{% endif %}
 </body>
 </html>
