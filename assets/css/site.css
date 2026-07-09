@@ -133,10 +133,7 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .entrycard .body p{margin:0 0 18px}
 .entrycard .body p:last-child{margin:0}
 .entrycard .foot{padding:12px 24px}
-.entry .actions{display:flex;gap:18px;flex-wrap:wrap;margin:30px 0;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em}
-.entry .actions a{color:var(--muted);text-decoration:none}
-.entry .actions a:hover{color:var(--star)}
-.pager{display:flex;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:16px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em}
+.pager{display:flex;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:16px;margin-top:30px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em}
 .pager a{color:var(--muted);text-decoration:none}
 .pager a:hover{color:var(--star)}
 
