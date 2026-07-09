@@ -51,8 +51,9 @@ permalink: /
   {% if latest %}
   <article class="doc corner latest">
     <div>
-      <div class="file"><span><span class="label">LATEST FRAGMENT</span> · FILE {{ latest.data.file }}</span><span class="stamp small">{% if latest.data.rubric == 'RESTRICTED' %}Sealed{% else %}Declassified{% endif %}</span></div>
-      <p class="day"><b>DAY {{ latest.data.day | dayNum }}</b> · {{ latest.data.rubric }}</p>
+      <div class="file"><span><span class="label">LATEST FRAGMENT</span></span><span class="stamp small">{% if latest.data.rubric == 'RESTRICTED' %}Sealed{% else %}Declassified{% endif %}</span></div>
+      <p class="day"><b>FRAGMENT {{ latest.data.file }}</b> · {{ latest.data.rubric }}</p>
+      <p class="dateline">LOG DAY {{ latest.data.day }}</p>
       <div class="body">
         {% if latest.data.redact %}{{ latest.content | replace(latest.data.redact, '<span class="redacted">' + latest.data.redact + '</span>') | safe }}
         {% else %}{{ latest.content | safe }}{% endif %}
@@ -60,7 +61,7 @@ permalink: /
       <div class="foot"><span>DECLASSIFIED {{ latest.data.declassified | isoDate }}</span><a href="{{ latest.url | url }}">FULL ENTRY →</a></div>
     </div>
     <a class="poster" href="{{ latest.url | url }}" aria-label="Open the latest entry">
-      <span class="rec"><i></i>REC · DAY {{ latest.data.day | dayNum }}</span>
+      <span class="rec"><i></i>REC · LOG DAY {{ latest.data.day }}</span>
       <span class="hudline"><span>FRAGMENT</span><span>0:16</span></span>
     </a>
   </article>
@@ -70,8 +71,9 @@ permalink: /
     {% for e in entries.slice(1, 12) %}
     <article class="doc corner {% if e.data.rubric == 'INCIDENT' %}incident{% endif %}">
       {% if e.data.rubric == 'RESTRICTED' %}<span class="stamp small stamp-over">Sealed</span>{% endif %}
-      <div class="file"><span>FILE {{ e.data.file }}</span>{% if e.data.incident %}<span class="inc-tag">INCIDENT № {{ e.data.incident | pad2 }}</span>{% endif %}</div>
-      <p class="day"><b>DAY {{ e.data.day | dayNum }}</b> · {{ e.data.rubric }}</p>
+      {% if e.data.incident %}<div class="file"><span>INCIDENT № {{ e.data.incident | pad2 }}</span></div>{% endif %}
+      <p class="day"><b>FRAGMENT {{ e.data.file }}</b> · {{ e.data.rubric }}</p>
+      <p class="dateline">LOG DAY {{ e.data.day }}</p>
       <div class="body">
         {% if e.data.redact %}{{ e.content | replace(e.data.redact, '<span class="redacted">' + e.data.redact + '</span>') | safe }}
         {% else %}{{ e.content | safe }}{% endif %}
