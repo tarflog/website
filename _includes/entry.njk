@@ -13,10 +13,6 @@ layout: base.njk
     </div>
     <div class="foot"><span>FILE {{ file }}</span><span>DECLASSIFIED {{ declassified | isoDate }}</span></div>
   </article>
-  <p class="actions">
-    <a href="https://www.tiktok.com/@tarflog" target="_blank" rel="noopener">DISCUSSION: TIKTOK</a>
-    <a href="https://t.me/tarflog" target="_blank" rel="noopener">TELEGRAM</a>
-  </p>
   {% set entries = collections.log %}
   {% for e in entries %}{% if e.url == page.url %}
     {% set nxt = entries[loop.index0 - 1] %}
