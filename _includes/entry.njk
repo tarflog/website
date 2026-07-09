@@ -2,16 +2,20 @@
 layout: base.njk
 ---
 <main class="wrap entry">
-  <p class="meta"><span>DECLASSIFIED {{ declassified | isoDate }}</span>{% if incident %}<span class="inc-tag">INCIDENT № {{ incident | pad2 }}</span>{% endif %}</p>
-  <h1>FRAGMENT {{ file }} <span class="r">· {{ rubric }}</span></h1>
-  <p class="dateline">LOG DAY {{ day }}</p>
-  <div class="text">
-    {% if redact %}{{ content | replace(redact, '<span class="redacted">' + redact + '</span>') | safe }}
-    {% else %}{{ content | safe }}{% endif %}
-  </div>
+  <article class="doc corner entrycard">
+    <span class="stamp small stamp-over">{% if rubric == 'RESTRICTED' %}Sealed{% else %}Declassified{% endif %}</span>
+    <div class="file"><span>OBSERVATION LOG — EARTH</span>{% if incident %}<span class="inc-tag">INCIDENT № {{ incident | pad2 }}</span>{% endif %}</div>
+    <h1 class="day"><b>FRAGMENT {{ file }}</b> · {{ rubric }}</h1>
+    <p class="dateline">LOG DAY {{ day }}</p>
+    <div class="body text">
+      {% if redact %}{{ content | replace(redact, '<span class="redacted">' + redact + '</span>') | safe }}
+      {% else %}{{ content | safe }}{% endif %}
+    </div>
+    <div class="foot"><span>FILE {{ file }}</span><span>DECLASSIFIED {{ declassified | isoDate }}</span></div>
+  </article>
   <p class="actions">
-    <a href="https://www.tiktok.com/@tarflog">DISCUSSION: TIKTOK</a>
-    <a href="https://t.me/tarflog">TELEGRAM</a>
+    <a href="https://www.tiktok.com/@tarflog" target="_blank" rel="noopener">DISCUSSION: TIKTOK</a>
+    <a href="https://t.me/tarflog" target="_blank" rel="noopener">TELEGRAM</a>
   </p>
   {% set entries = collections.log %}
   {% for e in entries %}{% if e.url == page.url %}
