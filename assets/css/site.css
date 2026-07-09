@@ -85,6 +85,9 @@ nav.main a:hover{color:var(--text)}
 .doc .file{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;color:var(--faint);padding:10px 16px 0}
 .doc .day{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--muted);padding:8px 16px 0}
 .doc .day b{color:var(--text);font-weight:600}
+.dateline{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--faint);margin:0}
+.doc .dateline{padding:4px 16px 0}
+.entry .dateline{margin:6px 0 18px}
 .doc .body{padding:10px 16px 14px;font-size:1.04rem}
 .doc .body p{margin:0 0 10px}
 .doc .body p:last-child{margin:0}

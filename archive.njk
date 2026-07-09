@@ -17,7 +17,7 @@ permalink: /archive/
   <table>
     {% for e in collections.log %}
     <tr>
-      <th><a href="{{ e.url | url }}">DAY {{ e.data.day | dayNum }}</a></th>
+      <th><a href="{{ e.url | url }}">{{ e.data.file }}</a></th>
       <td class="rub">{{ e.data.rubric }}</td>
       <td class="lede"><a href="{{ e.url | url }}">{{ e.content | striptags | truncate(72) }}</a></td>
       <td class="date">{{ e.data.declassified | isoDate }}</td>
