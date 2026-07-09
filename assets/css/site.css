@@ -171,6 +171,7 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 /* responsive */
 @media (max-width:900px){
   .hero .inner{grid-template-columns:1fr;padding:30px 0 26px}
+  .hero .stampbox{position:static;display:flex;justify-content:flex-end;padding:16px clamp(16px,3vw,32px) 0}
   .constel{justify-self:start;width:250px}
   .latest{grid-template-columns:1fr}
   .poster{margin:0 14px 14px;min-height:380px}
