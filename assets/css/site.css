@@ -54,8 +54,9 @@ nav.main a:hover{color:var(--text)}
 
 /* hero (index) */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line-soft)}
-.hero .bgimg{position:absolute;inset:0;background:url("../img/hero-tablet.jpg") right center/cover no-repeat;opacity:.35;filter:saturate(.8);
-  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.25) 38%,rgba(0,0,0,.9) 78%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.25) 38%,rgba(0,0,0,.9) 78%)}
+.hero .bgimg{position:absolute;inset:0;opacity:.9;background:
+  linear-gradient(90deg,rgba(13,17,23,.82) 0%,rgba(13,17,23,.35) 34%,rgba(13,17,23,0) 58%),
+  url("../img/hero-earth.jpg") center/cover no-repeat}
 [data-theme="paper"] .hero .bgimg{opacity:.14;filter:saturate(.4) contrast(.9)}
 .hero .inner{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:24px;padding:44px 0 34px}
 .hero .stampbox{position:absolute;top:26px;right:max(2vw,20px);z-index:2}
