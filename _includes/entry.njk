@@ -4,7 +4,8 @@ layout: base.njk
 <main class="wrap entry">
   <article class="doc corner entrycard">
     <span class="stamp small stamp-over">{% if rubric == 'RESTRICTED' %}Sealed{% else %}Declassified{% endif %}</span>
-    <div class="file"><span>OBSERVATION LOG — EARTH</span>{% if incident %}<span class="inc-tag">INCIDENT № {{ incident | pad2 }}</span>{% endif %}</div>
+    {# keep the incident tag on the left: the stamp owns the right corner #}
+    <div class="file"><span class="grp">OBSERVATION LOG — EARTH{% if incident %} <span class="inc-tag">INCIDENT № {{ incident | pad2 }}</span>{% endif %}</span></div>
     <h1 class="day"><b>FRAGMENT {{ file }}</b> · {{ rubric }}</h1>
     <p class="dateline">LOG DAY {{ day }}</p>
     <div class="body text">
