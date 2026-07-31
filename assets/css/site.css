@@ -137,6 +137,8 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .entrycard .body p{margin:0 0 18px}
 .entrycard .body p:last-child{margin:0}
 .entrycard .foot{padding:12px 24px}
+.appendix{min-height:0;aspect-ratio:16/10;margin:0 0 26px}
+.appendix .stamp{position:absolute;top:12px;right:14px;z-index:1}
 .pager{display:flex;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:16px;margin-top:30px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em}
 .pager a{color:var(--muted);text-decoration:none}
 .pager a:hover{color:var(--star)}

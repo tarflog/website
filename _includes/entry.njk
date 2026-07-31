@@ -13,6 +13,13 @@ layout: base.njk
     </div>
     <div class="foot"><span>FILE {{ file }}</span><span>DECLASSIFIED {{ declassified | isoDate }}</span></div>
   </article>
+  {% if plate %}
+  <figure class="photo-doc appendix">
+    <img src="{{ ('/assets/fragments/' + (file | lower) + '-plate.jpg') | url }}" alt="Photographic appendix to fragment {{ file }}." loading="lazy">
+    <span class="stamp small">Appendix</span>
+    <figcaption class="cap"><span>PHOTOGRAPHIC APPENDIX · {{ file }}-A</span><span>UNATTRIBUTED</span></figcaption>
+  </figure>
+  {% endif %}
   {% set entries = collections.log %}
   {% for e in entries %}{% if e.url == page.url %}
     {% set nxt = entries[loop.index0 - 1] %}
