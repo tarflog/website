@@ -19,7 +19,8 @@ permalink: /archive/
     <tr>
       <th><a href="{{ e.url | url }}">{{ e.data.file }}</a></th>
       <td class="rub">{{ e.data.rubric }}</td>
-      <td class="lede"><a href="{{ e.url | url }}">{{ e.content | striptags | truncate(72) }}</a></td>
+      {# striptags leaves entities (&quot;) behind; safe lets the browser read them back #}
+      <td class="lede"><a href="{{ e.url | url }}">{{ e.content | striptags | truncate(72) | safe }}</a></td>
       <td class="date">{{ e.data.declassified | isoDate }}</td>
     </tr>
     {% endfor %}

@@ -69,7 +69,8 @@ permalink: /
 
   <div class="grid">
     {% for e in entries.slice(1, 12) %}
-    <article class="doc corner {% if e.data.rubric == 'INCIDENT' %}incident{% endif %}">
+    <article class="doc corner {% if e.data.rubric == 'INCIDENT' %}incident{% endif %}{% if e.data.plate %} plated{% endif %}">
+      {% if e.data.plate %}<img class="plate" src="{{ ('/assets/fragments/' + (e.data.file | lower) + '-plate.jpg') | url }}" alt="" aria-hidden="true" loading="lazy">{% endif %}
       {% if e.data.rubric == 'RESTRICTED' %}<span class="stamp small stamp-over">Sealed</span>{% endif %}
       {% if e.data.incident %}<div class="file"><span>INCIDENT № {{ e.data.incident | pad2 }}</span></div>{% endif %}
       <p class="day"><b>FRAGMENT {{ e.data.file }}</b> · {{ e.data.rubric }}</p>
