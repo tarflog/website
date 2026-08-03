@@ -6,9 +6,9 @@
   "cfBeacon": "0034522f7f754520b242249ce0175954",
   "channels": [
     { "label": "TIKTOK", "handle": "@tarflog", "url": "https://www.tiktok.com/@tarflog" },
-    { "label": "YOUTUBE", "handle": "@tarflog", "url": "https://www.youtube.com/@tarflog" },
-    { "label": "INSTAGRAM", "handle": "@tarflog", "url": "https://www.instagram.com/tarflog/" },
-    { "label": "X", "handle": "@tarf_log", "url": "https://x.com/tarf_log" },
+    { "label": "YOUTUBE", "handle": "@tarflog", "url": "https://www.youtube.com/@Tarflog" },
+    { "label": "INSTAGRAM", "handle": "@tarf.log", "url": "https://www.instagram.com/tarf.log/" },
+    { "label": "X", "handle": "@Tarfearth", "url": "https://x.com/Tarfearth" },
     { "label": "TELEGRAM", "handle": "@tarflog", "url": "https://t.me/tarflog" }
   ],
   "quotes": [
