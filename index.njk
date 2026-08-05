@@ -61,8 +61,9 @@ permalink: /
       <div class="foot"><span>DECLASSIFIED {{ latest.data.declassified | isoDate }}</span><a href="{{ latest.url | url }}">FULL ENTRY →</a></div>
     </div>
     <a class="poster" href="{{ latest.url | url }}" aria-label="Open the latest entry">
+      {% if latest.data.plate %}<img src="{{ ('/assets/fragments/' + (latest.data.file | lower) + '-plate.jpg') | url }}" alt="" aria-hidden="true">{% endif %}
       <span class="rec"><i></i>REC · LOG DAY {{ latest.data.day }}</span>
-      <span class="hudline"><span>FRAGMENT</span><span>0:16</span></span>
+      <span class="hudline"><span>FRAGMENT</span><span>{{ latest.data.file }}</span></span>
     </a>
   </article>
   {% endif %}
