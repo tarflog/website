@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Authorisation
+permalink: /oauth/tiktok/
+eleventyExcludeFromCollections: true
+---
+{# Приёмник OAuth-редиректа TikTok: их форма требует https-адрес, localhost
+   не принимается. Страница ничего не хранит и никуда не отправляет — просто
+   показывает код из адресной строки, чтобы вставить его в инструмент. #}
+<main class="wrap entry">
+  <article class="doc corner entrycard">
+    <div class="file"><span class="grp">OBSERVATION LOG — INTERNAL</span></div>
+    <h1 class="day"><b>AUTHORISATION</b> · CALLBACK</h1>
+    <div class="body text">
+      <p id="msg">Reading the authorisation code…</p>
+      <p><code id="code" style="user-select:all;word-break:break-all"></code></p>
+      <p class="dateline">This page stores nothing. Close it when done.</p>
+    </div>
+  </article>
+</main>
+<script>
+  var q = new URLSearchParams(location.search);
+  var code = q.get("code"), err = q.get("error");
+  document.getElementById("msg").textContent = err
+    ? "Authorisation failed: " + err + " " + (q.get("error_description") || "")
+    : (code ? "Copy this code into the tool:" : "No code in the address.");
+  if (code) document.getElementById("code").textContent = code;
+</script>
