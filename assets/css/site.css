@@ -1,4 +1,4 @@
-/* Tarf — Observation Log. Terminal / Paper themes. */
+
 @font-face{font-family:"Plex Mono";src:url("../fonts/IBMPlexMono-Regular.ttf");font-weight:400;font-display:swap}
 @font-face{font-family:"Plex Mono";src:url("../fonts/IBMPlexMono-Medium.ttf");font-weight:500;font-display:swap}
 @font-face{font-family:"Plex Mono";src:url("../fonts/IBMPlexMono-SemiBold.ttf");font-weight:600;font-display:swap}
@@ -32,7 +32,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;
 .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,3vw,32px)}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--star);outline-offset:2px}
 
-/* header */
 header.site{border-bottom:1px solid var(--line-soft);background:color-mix(in srgb,var(--bg) 92%,transparent);position:sticky;top:0;z-index:30;backdrop-filter:blur(6px)}
 .site-bar{display:flex;align-items:center;gap:22px;height:52px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
@@ -43,7 +42,6 @@ nav.main a{color:var(--muted);text-decoration:none;padding:4px 0}
 nav.main a[aria-current]{color:var(--text);border-bottom:1px solid var(--star)}
 nav.main a:hover{color:var(--text)}
 
-/* stamps / corners / redacted */
 .stamp{display:inline-block;transform:rotate(-4deg);font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.22em;color:var(--stamp);border:2px solid var(--stamp);border-radius:3px;padding:6px 12px;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--stamp) 45%,transparent);opacity:.85;text-transform:uppercase;white-space:nowrap}
 .stamp.small{font-size:.56rem;padding:3px 8px;letter-spacing:.16em;border-width:1.5px}
 .corner{position:relative}
@@ -52,7 +50,6 @@ nav.main a:hover{color:var(--text)}
 .corner::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent)}
 .redacted{background:var(--redact);color:transparent;border-radius:1px;box-shadow:0 0 0 1px color-mix(in srgb,var(--redact) 70%,transparent);user-select:none}
 
-/* hero (index) */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line-soft)}
 .hero .bgimg{position:absolute;inset:0;opacity:.9;background:
   linear-gradient(90deg,rgba(13,17,23,.82) 0%,rgba(13,17,23,.35) 34%,rgba(13,17,23,0) 58%),
@@ -79,12 +76,10 @@ nav.main a:hover{color:var(--text)}
 .access p{margin:0;font-size:1.02rem}
 .access .sig{display:block;margin-top:10px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
 
-/* feed / documents */
 .feed{padding:34px 0 10px}
 .doc{position:relative;border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column}
 .doc .file{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;color:var(--faint);padding:10px 16px 0}
-/* plate as the card's own backdrop — same treatment as the social card, so a
-   fragment reads identically on the site and in a shared link */
+
 .doc.plated{isolation:isolate}
 .doc.plated>.plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:.5;z-index:0;filter:saturate(.85)}
@@ -119,7 +114,6 @@ nav.main a:hover{color:var(--text)}
 .photo-doc .cap{position:relative;width:100%;padding:12px 16px;background:linear-gradient(transparent,rgba(6,9,13,.88) 45%);font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;color:#cfd5de;display:flex;justify-content:space-between;gap:10px}
 .photo-doc .stamp{position:absolute;top:12px;right:12px}
 
-/* channels + footer */
 .channels{margin:26px 0;border:1px solid var(--line);background:var(--panel-2);padding:20px}
 .channels .tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;color:var(--muted);margin:0 0 12px}
 .channels .chan-row{display:flex;gap:10px;flex-wrap:wrap}
@@ -135,10 +129,9 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .foot-icons svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .foot-row .cats{color:var(--faint)}
 .badgephoto{width:56px;height:56px;border-radius:50%;object-fit:cover;outline:1px solid var(--line)}
-/* строка издателя: тише всего на странице, но читаемая */
+
 .disclaimer{margin-top:18px;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--faint)}
 
-/* entry page */
 .entry{max-width:760px;margin:0 auto;padding:44px 0 20px}
 .entrycard{margin-bottom:26px}
 .entrycard .file{padding:16px 24px 0}
@@ -155,7 +148,6 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .pager a{color:var(--muted);text-decoration:none}
 .pager a:hover{color:var(--star)}
 
-/* dossier */
 .dossier{max-width:860px;margin:0 auto;padding:44px 0 20px}
 .dossier .head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:22px}
 .dossier h1{font-family:var(--mono);font-size:1rem;letter-spacing:.2em;font-weight:600;margin:0}
@@ -168,7 +160,6 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .dossier .photo img{display:block;width:100%}
 .dossier .photo figcaption{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;color:var(--faint);padding:10px 12px}
 
-/* registry */
 .registry-link{margin:26px 0 0;font-size:.7rem;letter-spacing:.16em}
 .registry-link a{color:var(--muted);text-decoration:none}
 .registry-link a:hover{color:var(--star)}
@@ -180,7 +171,6 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .registry td.lede a:hover{color:var(--text)}
 .registry td.date{font-family:var(--mono);font-size:.62rem;color:var(--faint);white-space:nowrap}
 
-/* sealed pages (404 / cats) */
 .sealed-page{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;position:relative;overflow:hidden}
 .sealed-page .bg{position:absolute;inset:0;background:url("../img/glyph-slab.jpg") center/cover no-repeat;opacity:.25}
 [data-theme="paper"] .sealed-page .bg{opacity:.12}
@@ -189,7 +179,6 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 .sealed-page a{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--muted);text-decoration:none}
 .sealed-page a:hover{color:var(--star)}
 
-/* responsive */
 @media (max-width:900px){
   .hero .inner{grid-template-columns:1fr;padding:30px 0 26px}
   .hero .stampbox{position:static;display:flex;justify-content:flex-end;padding:16px clamp(16px,3vw,32px) 0}
@@ -204,3 +193,25 @@ footer.site{border-top:1px solid var(--line-soft);margin-top:30px;padding:26px 0
 @media (prefers-reduced-motion:reduce){
   .caret,.constel .star-dot,.poster .rec i{animation:none}
 }
+
+.entrycard .subject{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--star);padding:10px 24px 0;margin:0}
+.entrycard .subject a{color:var(--star);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--star) 40%,transparent)}
+.entrycard .subject a:hover{border-color:var(--star)}
+.casebox{max-width:none;margin:0 0 26px;padding:0}
+.casebox .head{margin-bottom:12px}
+.dossier h2{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;font-weight:600;color:var(--muted);margin:0}
+.dossier table.retention th,.dossier table.twocol th{width:auto}
+.retention th{white-space:nowrap}
+.retention td.st{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;white-space:nowrap;color:var(--muted)}
+.retention td.nt{font-size:.92rem;color:var(--muted)}
+.retention tr.wh td.st{color:var(--star)}
+.retention tr:first-child th,.retention tr:first-child td,
+.twocol tr:first-child th,.twocol tr:first-child td{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;color:var(--faint);font-weight:500}
+.twocol th{width:50%;font-family:var(--serif);font-size:1rem;font-weight:400;letter-spacing:0;white-space:normal;color:var(--faint)}
+.twocol td{color:var(--text)}
+.request{border:1px solid var(--line);background:var(--panel-2);padding:18px 20px 20px;margin:0 0 26px}
+.request .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--star);margin:0 0 10px}
+.request p{margin:0 0 14px;font-size:.96rem;color:var(--muted);max-width:56ch}
+.dossier .head.sub{margin:30px 0 12px}
+.casenote{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--faint);margin:0 0 18px}
+.caselist td.n{font-family:var(--mono);font-size:.62rem;color:var(--faint);white-space:nowrap;text-align:right}

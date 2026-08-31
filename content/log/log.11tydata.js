@@ -1,7 +1,3 @@
-// Записи журнала: layout, адрес /log/tl-NNNN/ (номер фрагмента = день записи),
-// будущие даты не публикуются. Словом «day» говорит только сам Тарф.
-// Описание страницы — начало самого фрагмента: без него все записи приходят
-// в поиск с одним и тем же слоганом сайта и выглядят как копии друг друга.
 const summarize = (raw, limit = 155) => {
   const text = String(raw || "").replace(/\s+/g, " ").trim();
   if (text.length <= limit) return text;
@@ -9,10 +5,24 @@ const summarize = (raw, limit = 155) => {
   return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:—-]$/, "") + "…";
 };
 
+const caseOf = (cases, slug) => {
+  for (const [key, c] of Object.entries(cases || {})) {
+    if ((c.fragments || []).includes(slug)) return { key, ...c };
+  }
+  return null;
+};
+
 module.exports = {
   layout: "entry.njk",
   tags: ["logpage"],
   eleventyComputed: {
+    caseFile: (data) => caseOf(data.cases, data.page.fileSlug),
+    title: (data) => {
+      const c = caseOf(data.cases, data.page.fileSlug);
+      return c
+        ? `${c.subject} — fragment ${data.file}`
+        : `Fragment ${data.file} · ${data.rubric}`;
+    },
     description: (data) => data.description || summarize(data.page.rawInput),
     permalink: (data) =>
       new Date(data.declassified) <= new Date()

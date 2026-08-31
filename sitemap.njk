@@ -2,9 +2,6 @@
 permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
-{#- Только страницы: адреса на «/». Тем самым мимо карты проходят feed.xml,
-    robots.txt и 404 — их индексировать незачем. Записи журнала с будущей
-    датой сюда не попадают: их permalink равен false. -#}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for p in collections.all %}{% if p.url and p.url.endsWith('/') %}

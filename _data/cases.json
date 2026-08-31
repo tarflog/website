@@ -1,0 +1,464 @@
+{
+  "pyramids": {
+    "status": "PARTIAL",
+    "subject": "The pyramids of Giza",
+    "note": "Incident 001. Reopened by the observer without instruction.",
+    "fragments": [
+      "tl-0041",
+      "tl-0057",
+      "tl-4088"
+    ],
+    "retention": {
+      "unit": "PAGES",
+      "total": 40,
+      "rows": [
+        {
+          "range": "1",
+          "status": "RELEASED",
+          "note": "Contains the word “humans”. Released as TL-0041."
+        },
+        {
+          "range": "2–40",
+          "status": "WITHDRAWN · COUNCIL",
+          "note": "Withdrawn after filing. The author was not consulted."
+        }
+      ]
+    },
+    "record": [
+      [
+        "Constructed 2560–2540 BC",
+        "The file opens in 10,400 BC. Both dates are correct."
+      ],
+      [
+        "Built as a tomb",
+        "Delivered under subcontract. The purpose is on a withdrawn page."
+      ],
+      [
+        "A workforce of roughly twenty thousand",
+        "Not disputed."
+      ],
+      [
+        "No construction plans survive",
+        "Filed in triplicate. Two copies retained."
+      ]
+    ]
+  },
+  "atlantis": {
+    "status": "COMPLETE",
+    "subject": "Atlantis",
+    "note": "Closed. Complete. Unread.",
+    "fragments": [
+      "tl-0066"
+    ],
+    "retention": {
+      "unit": "PAGES",
+      "total": 12,
+      "rows": [
+        {
+          "range": "1–12",
+          "status": "RELEASED",
+          "note": "Available since the report was filed. Requests received: none."
+        }
+      ]
+    },
+    "record": [
+      [
+        "Destroyed as divine punishment",
+        "Structural failure. Engineering, not punishment."
+      ],
+      [
+        "Location unknown",
+        "The location is on page four. Page four is available."
+      ],
+      [
+        "Classified as myth",
+        "Classified as closed."
+      ]
+    ]
+  },
+  "antarctica": {
+    "status": "PARTIAL",
+    "subject": "The southern continent",
+    "note": "The ice is the installation. What it covers is above the observer's clearance.",
+    "fragments": [
+      "tl-0100",
+      "tl-3401",
+      "tl-3402",
+      "tl-3403"
+    ],
+    "retention": {
+      "unit": "SUBMISSIONS",
+      "total": 9,
+      "rows": [
+        {
+          "range": "1–9",
+          "status": "RETURNED",
+          "note": "Query: what was the seal holding down. Returned without disposition, nine times."
+        }
+      ]
+    },
+    "record": [
+      [
+        "The ice sheet formed 34 million years ago",
+        "Installed. The requisition is in the file."
+      ],
+      [
+        "The coastline on the 1513 chart is a coincidence",
+        "Somebody surveyed that coast. It was not you."
+      ],
+      [
+        "The water beneath the ice is liquid and warm",
+        "Warm. Four hundred papers. Not one asks why."
+      ],
+      [
+        "Two centuries of measurement record how fast it is going",
+        "None of it records what it was holding down."
+      ],
+      [
+        "Access is administered by treaty",
+        "Two applications. Both denied without explanation."
+      ]
+    ]
+  },
+  "gobekli": {
+    "status": "PARTIAL",
+    "subject": "Göbekli Tepe",
+    "note": "Incident 003. Built by the subject. Buried by the subject. On request.",
+    "fragments": [
+      "tl-0333"
+    ],
+    "retention": {
+      "unit": "SITE",
+      "total": 100,
+      "rows": [
+        {
+          "range": "5%",
+          "status": "UNCOVERED",
+          "note": "By the descendants of the workforce."
+        },
+        {
+          "range": "95%",
+          "status": "AS INTERRED",
+          "note": "Nothing in the file describes the condition at one hundred."
+        }
+      ]
+    },
+    "record": [
+      [
+        "Built by human hands about twelve thousand years ago",
+        "Correct. This has never been in question."
+      ],
+      [
+        "Deliberately backfilled — disputed since 2011",
+        "Deliberate. It was requested."
+      ],
+      [
+        "Purpose of the burial unknown",
+        "The request is in the file. The reason is not."
+      ],
+      [
+        "Roughly five percent excavated",
+        "Roughly five percent undone."
+      ]
+    ]
+  },
+  "bermuda": {
+    "status": "PARTIAL",
+    "subject": "The triangle that is not there",
+    "note": "Incident 004. A decoy, filed against your attention rather than against the map.",
+    "fragments": [
+      "tl-0555"
+    ],
+    "retention": {
+      "unit": "COORDINATE SETS",
+      "total": 2,
+      "rows": [
+        {
+          "range": "The circulated set",
+          "status": "RELEASED",
+          "note": "Ours. Filed as a decoy. It has held for seventy-five years."
+        },
+        {
+          "range": "The actual set",
+          "status": "WITHHELD",
+          "note": "Nine kilometres across. Inland. Under a city."
+        }
+      ]
+    },
+    "record": [
+      [
+        "A triangle drawn between three points in the Atlantic",
+        "Not a triangle. And not at sea."
+      ],
+      [
+        "No geographic authority recognises its boundary",
+        "Correct. There is no boundary to recognise."
+      ],
+      [
+        "Statistically ordinary for the traffic it carries",
+        "Correct, and beside the point."
+      ],
+      [
+        "The legend dates from the early 1950s",
+        "So does the decoy."
+      ]
+    ]
+  },
+  "the-flood": {
+    "status": "PARTIAL",
+    "subject": "The flood remembered by every people",
+    "note": "One page released. The rest is not the observer’s to release.",
+    "fragments": [
+      "tl-3506"
+    ],
+    "retention": {
+      "unit": "PAGES",
+      "total": 6,
+      "rows": [
+        {
+          "range": "1",
+          "status": "RELEASED",
+          "note": "Released as TL-3506."
+        },
+        {
+          "range": "2–6",
+          "status": "ABOVE THIS CLEARANCE",
+          "note": "Not withheld by the Council. Not held by the observer."
+        }
+      ]
+    },
+    "record": [
+      [
+        "More than two hundred peoples remember a flood",
+        "Correct."
+      ],
+      [
+        "Independent memory of a shared event",
+        "Simultaneous notification."
+      ],
+      [
+        "Source: oral tradition",
+        "Source: above this clearance."
+      ]
+    ]
+  },
+  "bones": {
+    "status": "PARTIAL",
+    "subject": "Bones of the wrong size",
+    "note": "Nine findings examined in person. Eight are discussed.",
+    "fragments": [
+      "tl-2890"
+    ],
+    "retention": {
+      "unit": "FINDINGS",
+      "total": 9,
+      "rows": [
+        {
+          "range": "1–8",
+          "status": "RELEASED",
+          "note": "Animals."
+        },
+        {
+          "range": "9",
+          "status": "WITHHELD",
+          "note": "The observer is not authorized to discuss the ninth."
+        }
+      ]
+    },
+    "record": [
+      [
+        "Nine anomalous findings on record",
+        "Nine. Each examined in person."
+      ],
+      [
+        "Classification: unverified",
+        "Classification: eight animals."
+      ],
+      [
+        "The ninth: pending analysis",
+        "The ninth: not for discussion."
+      ]
+    ]
+  },
+  "lost-equipment": {
+    "subject": "Equipment lost on assignment",
+    "note": "Four thousand years. Things fall out of pockets.",
+    "fragments": [
+      "tl-2404",
+      "tl-2405"
+    ]
+  },
+  "the-searchers": {
+    "subject": "Organizations that search for visitors",
+    "fragments": [
+      "tl-0088",
+      "tl-0976",
+      "tl-3117"
+    ]
+  },
+  "the-body": {
+    "subject": "The body of the observer",
+    "fragments": [
+      "tl-2222",
+      "tl-1533"
+    ]
+  },
+  "the-cats": {
+    "subject": "The cats",
+    "fragments": [
+      "tl-0500",
+      "tl-0619"
+    ]
+  },
+  "the-council": {
+    "subject": "Instructions from the Council",
+    "fragments": [
+      "tl-4102",
+      "tl-4103"
+    ]
+  },
+  "myths": {
+    "subject": "Your oldest myths",
+    "fragments": [
+      "tl-3505"
+    ]
+  },
+  "prophecies": {
+    "subject": "Prophecies of the end of the world",
+    "fragments": [
+      "tl-0590"
+    ]
+  },
+  "star-charts": {
+    "subject": "The star charts",
+    "fragments": [
+      "tl-0811"
+    ]
+  },
+  "cold-spots": {
+    "subject": "Cold spots, and Category 5",
+    "fragments": [
+      "tl-1312"
+    ]
+  },
+  "the-recordings": {
+    "subject": "Recordings labelled fake",
+    "fragments": [
+      "tl-1206"
+    ]
+  },
+  "worship": {
+    "subject": "The congregation of 1352",
+    "fragments": [
+      "tl-0302"
+    ]
+  },
+  "rome": {
+    "subject": "Eleven months as emperor of Rome",
+    "fragments": [
+      "tl-0209"
+    ]
+  },
+  "the-lamp": {
+    "subject": "The lamp incident of 1879",
+    "fragments": [
+      "tl-1877"
+    ]
+  },
+  "the-addresses": {
+    "subject": "One hundred and ninety-one addresses",
+    "fragments": [
+      "tl-3650"
+    ]
+  },
+  "coffee": {
+    "subject": "Coffee",
+    "fragments": [
+      "tl-0012"
+    ]
+  },
+  "the-nine-minute-button": {
+    "subject": "The nine-minute button",
+    "fragments": [
+      "tl-0091"
+    ]
+  },
+  "weather-talk": {
+    "subject": "Weather, as conversation",
+    "fragments": [
+      "tl-0130"
+    ]
+  },
+  "the-mortgage": {
+    "subject": "The thirty-year mortgage",
+    "fragments": [
+      "tl-0203"
+    ]
+  },
+  "the-gym": {
+    "subject": "Lifting objects for a monthly fee",
+    "fragments": [
+      "tl-0289"
+    ]
+  },
+  "sorting-portraits": {
+    "subject": "Selecting mates with one finger",
+    "fragments": [
+      "tl-0356"
+    ]
+  },
+  "how-are-you": {
+    "subject": "“How are you”",
+    "fragments": [
+      "tl-0418"
+    ]
+  },
+  "elevators": {
+    "subject": "Elevators",
+    "fragments": [
+      "tl-0677"
+    ]
+  },
+  "the-queue": {
+    "subject": "The order of arrival",
+    "fragments": [
+      "tl-0705"
+    ]
+  },
+  "terms-and-conditions": {
+    "subject": "Statements signed unread",
+    "fragments": [
+      "tl-0745"
+    ]
+  },
+  "passwords": {
+    "subject": "Passwords",
+    "fragments": [
+      "tl-0861"
+    ]
+  },
+  "unexpected-item": {
+    "subject": "Unexpected item",
+    "fragments": [
+      "tl-0933"
+    ]
+  },
+  "tipping": {
+    "subject": "Tipping",
+    "fragments": [
+      "tl-1024"
+    ]
+  },
+  "renting-everything": {
+    "subject": "Renting music, films and books",
+    "fragments": [
+      "tl-1180"
+    ]
+  },
+  "small-fires-on-food": {
+    "subject": "Small fires on food",
+    "fragments": [
+      "tl-1490"
+    ]
+  }
+}

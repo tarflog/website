@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "15 6 * * *"   # ежедневная пересборка: фильтр будущих дат — страховка
+    - cron: "15 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -20,7 +20,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PATH_PREFIX: /            # custom domain tarflog.com serves at root
+      PATH_PREFIX: /
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

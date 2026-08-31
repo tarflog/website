@@ -1,12 +1,18 @@
 ---
 layout: base.njk
 ---
+
+{% set hasCasePage = caseFile and (caseFile.fragments.length > 1 or caseFile.retention) %}
 <main class="wrap entry">
   <article class="doc corner entrycard">
     <span class="stamp small stamp-over">{% if rubric == 'RESTRICTED' %}Sealed{% else %}Declassified{% endif %}</span>
-    {# keep the incident tag on the left: the stamp owns the right corner #}
+
     <div class="file"><span class="grp">OBSERVATION LOG — EARTH{% if incident %} <span class="inc-tag">INCIDENT № {{ incident | pad2 }}</span>{% endif %}</span></div>
     <h1 class="day"><b>FRAGMENT {{ file }}</b> · {{ rubric }}</h1>
+
+    {% if caseFile %}
+    <p class="subject">SUBJECT · {% if hasCasePage %}<a href="{{ ('/case/' + caseFile.key + '/') | url }}">{{ caseFile.subject }}</a>{% else %}{{ caseFile.subject }}{% endif %}</p>
+    {% endif %}
     <p class="dateline">LOG DAY {{ day }}</p>
     <div class="body text">
       {% if redact %}{{ content | replace(redact, '<span class="redacted">' + redact + '</span>') | safe }}
@@ -14,6 +20,41 @@ layout: base.njk
     </div>
     <div class="foot"><span>FILE {{ file }}</span><span>DECLASSIFIED {{ declassified | isoDate }}</span></div>
   </article>
+
+  {% if caseFile.retention %}
+  {% set r = caseFile.retention %}
+  <section class="dossier casebox">
+    <div class="head">
+      <h2>RETENTION SCHEDULE · {{ caseFile.subject | upper }}</h2>
+      <span class="stamp small">{{ caseFile.status or "Partial" }}</span>
+    </div>
+    <table class="retention">
+      <tr><th>{{ r.unit }}</th><td class="st">STATUS</td><td class="nt">NOTE</td></tr>
+      {% for row in r.rows %}
+      <tr class="{% if 'RELEASED' in row.status %}rel{% else %}wh{% endif %}">
+        <th>{{ row.range }}</th>
+        <td class="st">{{ row.status }}</td>
+        <td class="nt">{{ row.note }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <p class="selfnote">{{ r.total }} {{ r.unit | lower }} on file. The schedule is maintained by the archive, not by the observer.</p>
+  </section>
+  {% endif %}
+
+  {% if caseFile.record %}
+  <section class="dossier casebox">
+    <div class="head"><h2>YOUR RECORD · THIS FILE</h2></div>
+    <table class="twocol">
+      <tr><th>YOUR RECORD</th><td>THIS FILE</td></tr>
+      {% for row in caseFile.record %}
+      <tr><th>{{ row[0] }}</th><td>{{ row[1] }}</td></tr>
+      {% endfor %}
+    </table>
+    <p class="selfnote">Discrepancies are recorded, not resolved.</p>
+  </section>
+  {% endif %}
+
   {% if plate %}
   <figure class="photo-doc appendix">
     <img src="{{ ('/assets/fragments/' + (file | lower) + '-plate.jpg') | url }}" alt="Photographic appendix to fragment {{ file }}." loading="lazy">
@@ -21,6 +62,40 @@ layout: base.njk
     <figcaption class="cap"><span>PHOTOGRAPHIC APPENDIX · {{ file }}-A</span><span>UNATTRIBUTED</span></figcaption>
   </figure>
   {% endif %}
+
+  {% if hasCasePage %}
+  {% set siblings = [] %}
+  {% for e in collections.log %}
+    {% if e.url != page.url %}
+      {% for slug in caseFile.fragments %}
+        {% if e.url == ('/log/' + slug + '/') %}{% set siblings = (siblings.push(e), siblings) %}{% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  {% if siblings.length %}
+  <section class="dossier casebox">
+    <div class="head"><h2>ALSO IN THIS FILE</h2></div>
+    <table class="registry">
+      {% for e in siblings %}
+      <tr>
+        <th><a href="{{ e.url | url }}">{{ e.data.file }}</a></th>
+        <td class="lede"><a href="{{ e.url | url }}">{{ e.content | striptags | truncate(84) | safe }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    <p class="selfnote"><a href="{{ ('/case/' + caseFile.key + '/') | url }}">Open the whole file →</a></p>
+  </section>
+  {% endif %}
+  {% endif %}
+
+
+  <section class="request">
+    <p class="tag">FORM 7-C · REQUEST FOR DECLASSIFICATION</p>
+    <p>Material withheld from this file may be requested. Requests are logged.
+      Most are refused. The refusal is also logged.</p>
+    <a class="btn" href="mailto:{{ site.email }}?subject={{ ('Declassification request — ' + file) | urlencode }}&amp;body={{ ('File: ' + file + '\nRequested: ') | urlencode }}">File a request</a>
+  </section>
+
   {% set entries = collections.log %}
   {% for e in entries %}{% if e.url == page.url %}
     {% set nxt = entries[loop.index0 - 1] %}

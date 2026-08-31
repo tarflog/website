@@ -6,10 +6,11 @@
 <title>{% if title %}{{ title }} · {% endif %}{{ site.name }}</title>
 <meta name="description" content="{{ description or site.tagline }}">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-{# link preview: the fragment's own card when there is one, the subject otherwise #}
+
 {% set ogimg = ('/assets/fragments/' + (file | lower) + '-og.jpg') if file else '/assets/img/hero-earth.jpg' %}
 <meta property="og:type" content="{{ 'article' if file else 'website' }}">
-<meta property="og:title" content="{% if file %}Fragment {{ file }} · {{ rubric }}{% else %}{{ site.name }}{% endif %}">
+
+<meta property="og:title" content="{{ title or site.name }}">
 <meta property="og:description" content="{{ description or site.tagline }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
 <meta property="og:image" content="{{ site.url }}{{ ogimg | url }}">
@@ -59,10 +60,9 @@
     </span>
     <a class="cats" href="{{ '/cats/' | url }}">cats</a>
   </div>
-  {# Служебная строка издателя, а не реплика Тарфа: площадки требуют, чтобы
-     художественный аккаунт был обозначен как художественный. #}
+
   <p class="wrap disclaimer">{{ site.name }} is a work of fiction.</p>
 </footer>
-{% if site.cfBeacon %}<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cfBeacon }}"}'></script>{% endif %}
+{% if site.cfBeacon %}<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cfBeacon }}"}'></script>{% endif %}
 </body>
 </html>

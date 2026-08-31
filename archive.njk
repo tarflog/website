@@ -4,11 +4,7 @@ nav: archive
 title: Registry
 permalink: /archive/
 ---
-{#
-  Реестр — полный список записей одной страницей.
-  При росте за ~1500 строк включить встроенную пагинацию 11ty:
-  pagination: { data: collections.log, size: 500 } + prev/next.
-#}
+
 <main class="wrap dossier registry">
   <div class="head">
     <h1>REGISTRY OF DECLASSIFIED FRAGMENTS</h1>
@@ -19,11 +15,29 @@ permalink: /archive/
     <tr>
       <th><a href="{{ e.url | url }}">{{ e.data.file }}</a></th>
       <td class="rub">{{ e.data.rubric }}</td>
-      {# striptags leaves entities (&quot;) behind; safe lets the browser read them back #}
+
       <td class="lede"><a href="{{ e.url | url }}">{{ e.content | striptags | truncate(72) | safe }}</a></td>
       <td class="date">{{ e.data.declassified | isoDate }}</td>
     </tr>
     {% endfor %}
   </table>
   <p class="selfnote">{{ collections.log.length }} fragments declassified. The numbering is not sequential. This is not an error.</p>
+
+
+  <div class="head sub"><h2>CASE FILES</h2></div>
+  <table class="caselist">
+    {% for c in casePages %}
+    {% set open = 0 %}
+    {% for e in collections.log %}{% for slug in c.fragments %}{% if e.url == ('/log/' + slug + '/') %}{% set open = open + 1 %}{% endif %}{% endfor %}{% endfor %}
+    {% if open %}
+    <tr>
+      <th><a href="{{ ('/case/' + c.key + '/') | url }}">{{ c.subject }}</a></th>
+      <td class="rub">{{ c.status or ("PARTIAL" if c.retention else "OPEN") }}</td>
+      <td class="lede">{{ c.note or '' }}</td>
+      <td class="n">{{ open }} fragment{% if open > 1 %}s{% endif %}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </table>
+  <p class="selfnote">Files with a retention schedule are marked partial. Material withheld from them may be requested.</p>
 </main>

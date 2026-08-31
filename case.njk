@@ -1,0 +1,75 @@
+---
+layout: base.njk
+nav: archive
+pagination:
+  data: casePages
+  size: 1
+  alias: c
+  addAllPagesToCollections: true
+permalink: "/case/{{ c.key }}/"
+eleventyComputed:
+  title: "{{ c.subject }}"
+  description: "Case file: {{ c.subject }}. {{ c.note or 'Fragments of the observation log filed under one subject.' }}"
+---
+
+<main class="wrap dossier casepage">
+  <div class="head">
+    <h1>CASE FILE · {{ c.subject | upper }}</h1>
+    <span class="stamp small">{{ c.status or ("Partial" if c.retention else "Open") }}</span>
+  </div>
+  {% if c.note %}<p class="casenote">{{ c.note }}</p>{% endif %}
+
+  {% if c.retention %}
+  {% set r = c.retention %}
+  <table class="retention">
+    <tr><th>{{ r.unit }}</th><td class="st">STATUS</td><td class="nt">NOTE</td></tr>
+    {% for row in r.rows %}
+    <tr class="{% if 'RELEASED' in row.status %}rel{% else %}wh{% endif %}">
+      <th>{{ row.range }}</th>
+      <td class="st">{{ row.status }}</td>
+      <td class="nt">{{ row.note }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <p class="selfnote">{{ r.total }} {{ r.unit | lower }} on file.</p>
+  {% endif %}
+
+  {% if c.record %}
+  <div class="head sub"><h2>YOUR RECORD · THIS FILE</h2></div>
+  <table class="twocol">
+    <tr><th>YOUR RECORD</th><td>THIS FILE</td></tr>
+    {% for row in c.record %}
+    <tr><th>{{ row[0] }}</th><td>{{ row[1] }}</td></tr>
+    {% endfor %}
+  </table>
+  <p class="selfnote">Discrepancies are recorded, not resolved.</p>
+  {% endif %}
+
+  <div class="head sub"><h2>DECLASSIFIED FRAGMENTS</h2></div>
+  {% set shown = 0 %}
+  <table class="registry">
+    {% for e in collections.log %}
+      {% for slug in c.fragments %}
+        {% if e.url == ('/log/' + slug + '/') %}
+        {% set shown = shown + 1 %}
+        <tr>
+          <th><a href="{{ e.url | url }}">{{ e.data.file }}</a></th>
+          <td class="rub">{{ e.data.rubric }}</td>
+          <td class="lede"><a href="{{ e.url | url }}">{{ e.content | striptags | truncate(96) | safe }}</a></td>
+          <td class="date">{{ e.data.declassified | isoDate }}</td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </table>
+  <p class="selfnote">{{ shown }} of {{ c.fragments.length }} fragments in this file are declassified.</p>
+
+  <section class="request">
+    <p class="tag">FORM 7-C · REQUEST FOR DECLASSIFICATION</p>
+    <p>Material withheld from this file may be requested. Requests are logged.
+      Most are refused. The refusal is also logged.</p>
+    <a class="btn" href="mailto:{{ site.email }}?subject={{ ('Declassification request — ' + c.subject) | urlencode }}&amp;body={{ ('Case: ' + c.subject + '\nRequested: ') | urlencode }}">File a request</a>
+  </section>
+
+  <p class="registry-link"><a href="{{ '/archive/' | url }}">← ALL DECLASSIFIED FRAGMENTS</a></p>
+</main>
