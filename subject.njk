@@ -23,10 +23,7 @@ description: "The card held on the subject of the observation log: designation, 
   </table>
   <p class="selfnote">Self-reported. Accuracy: complete. Completeness: adequate.</p>
   <figure class="photo corner">
-    <picture>
-      <source type="image/webp" sizes="(min-width:860px) 420px, 100vw" srcset="{{ '/assets/img/dossier-rooftop-420.webp' | url }} 420w, {{ '/assets/img/dossier-rooftop-840.webp' | url }} 840w">
-      <img src="{{ '/assets/img/dossier-rooftop-840.jpg' | url }}" width="880" height="1100" alt="A tall slender figure in a field uniform seen from behind on a night rooftop, looking up at one bright star." loading="lazy" decoding="async">
-    </picture>
+    {% picture "assets/img/dossier-rooftop.jpg", "A tall slender figure in a field uniform seen from behind on a night rooftop, looking up at one bright star.", [420, 840], "(min-width:860px) 420px, 100vw", { "loading": "lazy" } %}
     <figcaption>APPENDIX B · ANNUAL TRANSMISSION · UNDATED</figcaption>
   </figure>
 </main>

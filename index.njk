@@ -2,16 +2,15 @@
 layout: base.njk
 nav: log
 permalink: /
+eleventyImport:
+  collections: [log]
 eleventyComputed:
   description: "The field log of Tarf, a non-human observer stationed on Earth: {{ collections.log.length }} fragments declassified so far, newest first, with the case files they belong to."
 ---
 {% set entries = collections.log %}
 {% set latest = entries[0] %}
 <section class="hero hasimg">
-  <picture>
-    <source type="image/webp" sizes="100vw" srcset="{{ '/assets/img/hero-earth-960.webp' | url }} 960w, {{ '/assets/img/hero-earth-1280.webp' | url }} 1280w, {{ '/assets/img/hero-earth-1600.webp' | url }} 1600w">
-    <img class="heroimg" src="{{ '/assets/img/hero-earth-1280.jpg' | url }}" sizes="100vw" srcset="{{ '/assets/img/hero-earth-960.jpg' | url }} 960w, {{ '/assets/img/hero-earth-1280.jpg' | url }} 1280w, {{ '/assets/img/hero-earth-1600.jpg' | url }} 1600w" width="1600" height="900" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
-  </picture>
+  {% picture "assets/img/hero-earth.jpg", "", [960, 1280, 1600], "100vw", { "class": "heroimg", "aria-hidden": "true", "fetchpriority": "high" } %}
   <div class="bgimg" aria-hidden="true"></div>
   <div class="stampbox"><span class="stamp">Partially Declassified</span></div>
   <div class="wrap inner">
@@ -67,10 +66,7 @@ eleventyComputed:
       <div class="foot"><span>DECLASSIFIED {{ latest.data.declassified | isoDate }}</span><a href="{{ latest.url | url }}">FULL ENTRY →</a></div>
     </div>
     <a class="poster{% if not latest.data.plate %} noplate{% endif %}" href="{{ latest.url | url }}" aria-label="Open the latest entry">
-      {% if latest.data.plate %}<picture>
-        <source type="image/webp" sizes="(min-width:901px) 300px, 100vw" srcset="{{ ('/assets/fragments/' + (latest.data.file | lower) + '-plate-400.webp') | url }} 400w, {{ ('/assets/fragments/' + (latest.data.file | lower) + '-plate-800.webp') | url }} 800w">
-        <img src="{{ ('/assets/fragments/' + (latest.data.file | lower) + '-plate.jpg') | url }}" alt="" aria-hidden="true" decoding="async">
-      </picture>{% endif %}
+      {% if latest.data.plate %}{% picture "assets/fragments/" + (latest.data.file | lower) + "-plate.jpg", "", [400, 800], "(min-width:901px) 300px, 100vw", { "aria-hidden": "true" } %}{% endif %}
       <span class="rec"><i></i>REC · LOG DAY {{ latest.data.day }}</span>
       <span class="hudline"><span>FRAGMENT</span><span>{{ latest.data.file }}</span></span>
     </a>
@@ -80,10 +76,7 @@ eleventyComputed:
   <div class="grid">
     {% for e in entries.slice(1, 12) %}
     <article class="doc corner {% if e.data.rubric == 'INCIDENT' %}incident{% endif %}{% if e.data.plate %} plated{% endif %}">
-      {% if e.data.plate %}<picture>
-        <source type="image/webp" sizes="(min-width:901px) 520px, 100vw" srcset="{{ ('/assets/fragments/' + (e.data.file | lower) + '-plate-400.webp') | url }} 400w, {{ ('/assets/fragments/' + (e.data.file | lower) + '-plate-800.webp') | url }} 800w">
-        <img class="plate" src="{{ ('/assets/fragments/' + (e.data.file | lower) + '-plate.jpg') | url }}" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      </picture>{% endif %}
+      {% if e.data.plate %}{% picture "assets/fragments/" + (e.data.file | lower) + "-plate.jpg", "", [400, 800], "(min-width:901px) 520px, 100vw", { "class": "plate", "aria-hidden": "true", "loading": "lazy" } %}{% endif %}
       {% if e.data.rubric == 'RESTRICTED' %}<span class="stamp small stamp-over">Sealed</span>{% endif %}
       {% if e.data.incident %}<div class="file"><span>INCIDENT № {{ e.data.incident | pad2 }}</span></div>{% endif %}
       <p class="day"><b>FRAGMENT {{ e.data.file }}</b> · {{ e.data.rubric }}</p>
@@ -97,10 +90,7 @@ eleventyComputed:
     {% endfor %}
 
     <figure class="photo-doc">
-      <picture>
-        <source type="image/webp" sizes="(min-width:901px) 520px, 100vw" srcset="{{ '/assets/img/evidence-queue-800.webp' | url }} 800w, {{ '/assets/img/evidence-queue-1200.webp' | url }} 1200w">
-        <img src="{{ '/assets/img/evidence-queue-800.jpg' | url }}" alt="Surveillance photo: a queue at a coffee kiosk; one very tall figure stands unnoticed among the people." loading="lazy" decoding="async">
-      </picture>
+      {% picture "assets/img/evidence-queue.jpg", "Surveillance photo: a queue at a coffee kiosk; one very tall figure stands unnoticed among the people.", [800, 1200], "(min-width:901px) 520px, 100vw", { "loading": "lazy" } %}
       <span class="stamp small">Appendix</span>
       <figcaption class="cap"><span>SURVEILLANCE APPENDIX · TL-0012-A</span><span>NO WITNESS REPORTS</span></figcaption>
     </figure>

@@ -26,6 +26,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - uses: actions/cache@v4
+        with:
+          path: .image-cache
+          key: image-cache-${{ hashFiles('assets/img/*.jpg', 'assets/fragments/*-plate.jpg', 'eleventy.config.js') }}
+          restore-keys: image-cache-
       - run: npm ci || npm install
       - run: npx @11ty/eleventy
       - uses: actions/upload-pages-artifact@v3

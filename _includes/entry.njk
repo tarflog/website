@@ -64,11 +64,11 @@ layout: base.njk
   {% endif %}
 
   {% if plate %}
+  {% set plateSubject = (", subject " + altSubject) if altSubject else "" %}
+  {% set plateRubric = (", rubric " + (rubric | lower)) if rubric else "" %}
+  {% set plateAlt = "Photographic appendix to fragment " + file + plateSubject + plateRubric + "." %}
   <figure class="photo-doc appendix">
-    <picture>
-      <source type="image/webp" sizes="(min-width:800px) 760px, 100vw" srcset="{{ ('/assets/fragments/' + (file | lower) + '-plate-400.webp') | url }} 400w, {{ ('/assets/fragments/' + (file | lower) + '-plate-800.webp') | url }} 800w">
-      <img src="{{ ('/assets/fragments/' + (file | lower) + '-plate.jpg') | url }}" alt="{% if altSubject %}Photographic appendix to fragment {{ file }}, subject {{ altSubject }}, rubric {{ rubric | lower }}.{% elif rubric %}Photographic appendix to fragment {{ file }}, rubric {{ rubric | lower }}.{% else %}Photographic appendix to fragment {{ file }}.{% endif %}" loading="lazy" decoding="async">
-    </picture>
+    {% picture "assets/fragments/" + (file | lower) + "-plate.jpg", plateAlt, [400, 800], "(min-width:800px) 760px, 100vw", { "loading": "lazy" } %}
     <span class="stamp small">Appendix</span>
     <figcaption class="cap"><span>PHOTOGRAPHIC APPENDIX · {{ file }}-A</span><span>UNATTRIBUTED</span></figcaption>
   </figure>
@@ -105,6 +105,15 @@ layout: base.njk
     <div class="head"><h2>{% if caseFile %}FILED UNDER · {{ caseFile.subject | upper }}{% else %}FILED SEPARATELY{% endif %}</h2></div>
     <p class="selfnote">{% if caseFile %}This file holds no other declassified fragment.{% else %}This fragment is not filed under a subject file.{% endif %}
       <a href="{{ '/archive/' | url }}">Open the registry →</a></p>
+  </section>
+  {% endif %}
+
+  {% if video %}
+  <section class="request">
+    <p class="tag">APPENDIX · MOTION RECORD</p>
+    <p>A motion record is held for this fragment. It is stored off this archive,
+      on the platform that carries it. Nothing further is attached to the file.</p>
+    <a class="btn" href="{{ video }}" target="_blank" rel="noopener">Open the motion record</a>
   </section>
   {% endif %}
 

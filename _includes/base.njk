@@ -8,11 +8,11 @@
 {% set isCase = c.key -%}
 {% set canonical = site.url + (page.url | url) -%}
 {% set pageDescription = description or site.tagline -%}
-{% set ogimg = ('/assets/fragments/' + (file | lower) + '-og.jpg') if isFragment else '/assets/img/hero-earth.jpg' -%}
+{% set ogimg = ('/assets/fragments/' + (file | lower) + '-og.jpg') if isFragment else (('/assets/fragments/case-' + c.key + '-og.jpg') if isCase else '/assets/img/hero-earth.jpg') -%}
 {% set ogimgUrl = site.url + (ogimg | url) -%}
-{% set ogimgW = '1200' if isFragment else '1920' -%}
-{% set ogimgH = '675' if isFragment else '1080' -%}
-{% set ogimgAlt = ('Preview card for fragment ' + file + ' of Tarf — Observation Log, a work of fiction.') if isFragment else 'Cover image of Tarf — Observation Log, a work of fiction.' -%}
+{% set ogimgW = '1200' if (isFragment or isCase) else '1920' -%}
+{% set ogimgH = '675' if isFragment else ('630' if isCase else '1080') -%}
+{% set ogimgAlt = ('Preview card for fragment ' + file + ' of Tarf — Observation Log, a work of fiction.') if isFragment else (('Preview card for the case file on ' + (c.topic or c.subject) + ' in Tarf — Observation Log, a work of fiction.') if isCase else 'Cover image of Tarf — Observation Log, a work of fiction.') -%}
 {% set sameAs = [] -%}
 {% set xAccount = [] -%}
 {% for ch in site.channels %}{% set sameAs = (sameAs.push(ch.url), sameAs) %}{% if ch.label == 'X' %}{% set xAccount = (xAccount.push(ch.handle), xAccount) %}{% endif %}{% endfor -%}
@@ -142,10 +142,7 @@
     <symbol id="i-rss" viewBox="0 0 24 24"><circle cx="6.2" cy="17.8" r="1.6" fill="currentColor" stroke="none"/><path d="M4.5 11.2a8.3 8.3 0 0 1 8.3 8.3M4.5 5.2a14.3 14.3 0 0 1 14.3 14.3"/></symbol>
   </svg>
   <div class="wrap foot-row">
-    <picture>
-      <source type="image/webp" srcset="{{ '/assets/img/badge-macro-112.webp' | url }} 1x, {{ '/assets/img/badge-macro-168.webp' | url }} 1.5x">
-      <img class="badgephoto" src="{{ '/assets/img/badge-macro-112.jpg' | url }}" srcset="{{ '/assets/img/badge-macro-112.jpg' | url }} 1x, {{ '/assets/img/badge-macro-168.jpg' | url }} 1.5x" width="56" height="56" alt="Expedition badge: a horizontal line with an orange dot." loading="lazy" decoding="async">
-    </picture>
+    {% picture "assets/img/badge-macro.jpg", "Expedition badge: a horizontal line with an orange dot.", [112, 168], "56px", { "class": "badgephoto", "loading": "lazy" } %}
     <span>{{ site.email }}</span>
     <span class="foot-icons">
     {% for c in site.channels %}<a class="icon" href="{{ c.url }}" target="_blank" rel="noopener me" aria-label="{{ c.label }} — {{ c.handle }}" title="{{ c.label }} · {{ c.handle }}"><svg><use href="#i-{{ c.label | lower }}"/></svg></a>{% endfor %}
