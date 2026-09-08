@@ -8,16 +8,18 @@ pagination:
   addAllPagesToCollections: true
 permalink: "/case/{{ c.key }}/"
 eleventyComputed:
-  title: "{{ c.subject }}"
-  description: "Case file: {{ c.subject }}. {{ c.note or 'Fragments of the observation log filed under one subject.' }}"
+  topic: "{{ (c.topic or c.subject) | safe }}"
+  title: "{{ (c.topic or c.subject) | safe }} — case file"
+  description: "{{ (c.topic or c.subject) | safe }} in the observation log. {{ (c.note or 'Declassified fragments filed under one subject, with the retention schedule and the record as the file has it.') | safe }}"
 ---
 
 <main class="wrap dossier casepage">
   <div class="head">
-    <h1>CASE FILE · {{ c.subject | upper }}</h1>
+    <h1>CASE FILE · {{ (c.topic or c.subject) | upper }}</h1>
     <span class="stamp small">{{ c.status or ("Partial" if c.retention else "Open") }}</span>
   </div>
-  {% if c.note %}<p class="casenote">{{ c.note }}</p>{% endif %}
+  {% set filedAs = c.subject if c.topic and c.topic != c.subject %}
+  {% if filedAs or c.note %}<p class="casenote">{% if filedAs %}FILED AS “{{ filedAs }}”. {% endif %}{{ c.note }}</p>{% endif %}
 
   {% if c.retention %}
   {% set r = c.retention %}

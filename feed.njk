@@ -2,6 +2,7 @@
 permalink: /feed.xml
 eleventyExcludeFromCollections: true
 ---
+{%- set entries = collections.log.slice(0, 50) -%}
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
@@ -9,14 +10,18 @@ eleventyExcludeFromCollections: true
   <link>{{ site.url }}</link>
   <description>{{ site.tagline }}</description>
   <language>en</language>
+  <managingEditor>{{ site.email }} ({{ site.name }})</managingEditor>
+  <webMaster>{{ site.email }} ({{ site.name }})</webMaster>
+  <lastBuildDate>{{ collections.log[0].data.declassified | rssDate }}</lastBuildDate>
   <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml"/>
-  {%- for e in collections.log %}
+  {%- for e in entries %}
   <item>
-    <title>Observation log, day {{ e.data.day | dayNum }} — {{ e.data.rubric }}</title>
+    <title>{{ e.data.title }}</title>
     <link>{{ site.url }}{{ e.url }}</link>
-    <guid>{{ site.url }}{{ e.url }}</guid>
+    <guid isPermaLink="true">{{ site.url }}{{ e.url }}</guid>
+    <category>{{ e.data.rubric }}</category>
     <pubDate>{{ e.data.declassified | rssDate }}</pubDate>
-    <description>{{ e.content | striptags | truncate(400) }}</description>
+    <description>{{ e.content | striptags }}</description>
   </item>
   {%- endfor %}
 </channel>

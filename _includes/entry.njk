@@ -3,12 +3,20 @@ layout: base.njk
 ---
 
 {% set hasCasePage = caseFile and (caseFile.fragments.length > 1 or caseFile.retention) %}
+{% set subjectTopic = topic or caseFile.topic %}
+{% set altSubject = subjectTopic or caseFile.subject %}
 <main class="wrap entry">
+  <nav class="dateline registry-link" aria-label="Breadcrumb">
+    <a href="{{ '/' | url }}">THE LOG</a> ·
+    <a href="{{ '/archive/' | url }}">REGISTRY</a> ·
+    <span aria-current="page">FRAGMENT {{ file }}</span>
+  </nav>
+
   <article class="doc corner entrycard">
     <span class="stamp small stamp-over">{% if rubric == 'RESTRICTED' %}Sealed{% else %}Declassified{% endif %}</span>
 
     <div class="file"><span class="grp">OBSERVATION LOG — EARTH{% if incident %} <span class="inc-tag">INCIDENT № {{ incident | pad2 }}</span>{% endif %}</span></div>
-    <h1 class="day"><b>FRAGMENT {{ file }}</b> · {{ rubric }}</h1>
+    <h1 class="day"><b>FRAGMENT {{ file }}</b>{% if subjectTopic %} · <b>{{ subjectTopic }}</b>{% endif %} · {{ rubric }}</h1>
 
     {% if caseFile %}
     <p class="subject">SUBJECT · {% if hasCasePage %}<a href="{{ ('/case/' + caseFile.key + '/') | url }}">{{ caseFile.subject }}</a>{% else %}{{ caseFile.subject }}{% endif %}</p>
@@ -18,7 +26,7 @@ layout: base.njk
       {% if redact %}{{ content | replace(redact, '<span class="redacted">' + redact + '</span>') | safe }}
       {% else %}{{ content | safe }}{% endif %}
     </div>
-    <div class="foot"><span>FILE {{ file }}</span><span>DECLASSIFIED {{ declassified | isoDate }}</span></div>
+    <div class="foot"><span>FILE {{ file }}</span><span>DECLASSIFIED <time datetime="{{ declassified | isoDate }}">{{ declassified | isoDate }}</time></span></div>
   </article>
 
   {% if caseFile.retention %}
@@ -57,7 +65,10 @@ layout: base.njk
 
   {% if plate %}
   <figure class="photo-doc appendix">
-    <img src="{{ ('/assets/fragments/' + (file | lower) + '-plate.jpg') | url }}" alt="Photographic appendix to fragment {{ file }}." loading="lazy">
+    <picture>
+      <source type="image/webp" sizes="(min-width:800px) 760px, 100vw" srcset="{{ ('/assets/fragments/' + (file | lower) + '-plate-400.webp') | url }} 400w, {{ ('/assets/fragments/' + (file | lower) + '-plate-800.webp') | url }} 800w">
+      <img src="{{ ('/assets/fragments/' + (file | lower) + '-plate.jpg') | url }}" alt="{% if altSubject %}Photographic appendix to fragment {{ file }}, subject {{ altSubject }}, rubric {{ rubric | lower }}.{% elif rubric %}Photographic appendix to fragment {{ file }}, rubric {{ rubric | lower }}.{% else %}Photographic appendix to fragment {{ file }}.{% endif %}" loading="lazy" decoding="async">
+    </picture>
     <span class="stamp small">Appendix</span>
     <figcaption class="cap"><span>PHOTOGRAPHIC APPENDIX · {{ file }}-A</span><span>UNATTRIBUTED</span></figcaption>
   </figure>
@@ -72,9 +83,9 @@ layout: base.njk
       {% endfor %}
     {% endif %}
   {% endfor %}
-  {% if siblings.length %}
   <section class="dossier casebox">
-    <div class="head"><h2>ALSO IN THIS FILE</h2></div>
+    <div class="head"><h2>{% if siblings.length %}ALSO IN THIS FILE{% else %}FILED UNDER · {{ caseFile.subject | upper }}{% endif %}</h2></div>
+    {% if siblings.length %}
     <table class="registry">
       {% for e in siblings %}
       <tr>
@@ -84,10 +95,27 @@ layout: base.njk
       {% endfor %}
     </table>
     <p class="selfnote"><a href="{{ ('/case/' + caseFile.key + '/') | url }}">Open the whole file →</a></p>
+    {% else %}
+    <p class="selfnote">No other fragment of this file is declassified.
+      <a href="{{ ('/case/' + caseFile.key + '/') | url }}">Open the file →</a></p>
+    {% endif %}
+  </section>
+  {% else %}
+  <section class="dossier casebox">
+    <div class="head"><h2>{% if caseFile %}FILED UNDER · {{ caseFile.subject | upper }}{% else %}FILED SEPARATELY{% endif %}</h2></div>
+    <p class="selfnote">{% if caseFile %}This file holds no other declassified fragment.{% else %}This fragment is not filed under a subject file.{% endif %}
+      <a href="{{ '/archive/' | url }}">Open the registry →</a></p>
   </section>
   {% endif %}
-  {% endif %}
 
+  {% for c in site.channels %}{% if c.label == 'TELEGRAM' %}
+  <section class="request">
+    <p class="tag">NOTICE · CONTINUED DECLASSIFICATION</p>
+    <p>Releases follow no schedule. Each fragment is announced on the archive
+      channel on the day it opens, once.</p>
+    <a class="btn" href="{{ c.url }}" target="_blank" rel="noopener">Telegram · {{ c.handle }}</a>
+  </section>
+  {% endif %}{% endfor %}
 
   <section class="request">
     <p class="tag">FORM 7-C · REQUEST FOR DECLASSIFICATION</p>
@@ -100,9 +128,12 @@ layout: base.njk
   {% for e in entries %}{% if e.url == page.url %}
     {% set nxt = entries[loop.index0 - 1] %}
     {% set prv = entries[loop.index0 + 1] %}
-    <nav class="pager">
+    {% if prv or nxt %}
+    <nav class="pager" aria-label="Adjacent by declassification date">
       <span>{% if prv %}<a href="{{ prv.url | url }}">← {{ prv.data.file }}</a>{% endif %}</span>
       <span>{% if nxt %}<a href="{{ nxt.url | url }}">{{ nxt.data.file }} →</a>{% endif %}</span>
     </nav>
+    <p class="dateline">ADJACENT BY DECLASSIFICATION DATE, NOT BY SUBJECT.</p>
+    {% endif %}
   {% endif %}{% endfor %}
 </main>

@@ -2,14 +2,27 @@
 permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
+{%- set latest = collections.log[0].data.declassified -%}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{%- for p in collections.all %}{% if p.url and p.url.endsWith('/') %}
+{%- for path in ["/", "/archive/", "/subject/", "/channels/"] %}
   <url>
-    <loc>{{ site.url }}{{ p.url }}</loc>
-    {%- if p.data.declassified %}
-    <lastmod>{{ p.data.declassified | isoDate }}</lastmod>
-    {%- endif %}
+    <loc>{{ site.url }}{{ path }}</loc>
+    <lastmod>{{ latest | isoDate }}</lastmod>
   </url>
-{%- endif %}{% endfor %}
+{%- endfor %}
+{%- for e in collections.log %}
+  <url>
+    <loc>{{ site.url }}{{ e.url }}</loc>
+    <lastmod>{{ e.data.declassified | isoDate }}</lastmod>
+  </url>
+{%- endfor %}
+{%- for c in casePages %}
+{%- set filed = false %}
+{%- for e in collections.log %}{% for slug in c.fragments %}{% if e.url == ('/log/' + slug + '/') %}{% if not filed or e.data.declassified > filed %}{% set filed = e.data.declassified %}{% endif %}{% endif %}{% endfor %}{% endfor %}
+  <url>
+    <loc>{{ site.url }}/case/{{ c.key }}/</loc>
+    <lastmod>{{ (filed or latest) | isoDate }}</lastmod>
+  </url>
+{%- endfor %}
 </urlset>

@@ -3,22 +3,112 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if title %}{{ title }} · {% endif %}{{ site.name }}</title>
-<meta name="description" content="{{ description or site.tagline }}">
-<link rel="canonical" href="{{ site.url }}{{ page.url }}">
 
-{% set ogimg = ('/assets/fragments/' + (file | lower) + '-og.jpg') if file else '/assets/img/hero-earth.jpg' %}
-<meta property="og:type" content="{{ 'article' if file else 'website' }}">
+{% set isFragment = file -%}
+{% set isCase = c.key -%}
+{% set canonical = site.url + (page.url | url) -%}
+{% set pageDescription = description or site.tagline -%}
+{% set ogimg = ('/assets/fragments/' + (file | lower) + '-og.jpg') if isFragment else '/assets/img/hero-earth.jpg' -%}
+{% set ogimgUrl = site.url + (ogimg | url) -%}
+{% set ogimgW = '1200' if isFragment else '1920' -%}
+{% set ogimgH = '675' if isFragment else '1080' -%}
+{% set ogimgAlt = ('Preview card for fragment ' + file + ' of Tarf — Observation Log, a work of fiction.') if isFragment else 'Cover image of Tarf — Observation Log, a work of fiction.' -%}
+{% set sameAs = [] -%}
+{% set xAccount = [] -%}
+{% for ch in site.channels %}{% set sameAs = (sameAs.push(ch.url), sameAs) %}{% if ch.label == 'X' %}{% set xAccount = (xAccount.push(ch.handle), xAccount) %}{% endif %}{% endfor -%}
 
+<title>{% if isFragment %}{{ title or site.name }}{% elif title %}{{ title }} · TARF·LOG{% else %}{{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ pageDescription }}">
+{% if noindex %}<meta name="robots" content="noindex,follow">
+{% endif %}<link rel="canonical" href="{{ canonical }}">
+<meta name="theme-color" content="#0d1117">
+
+<meta property="og:type" content="{{ 'article' if isFragment else 'website' }}">
 <meta property="og:title" content="{{ title or site.name }}">
-<meta property="og:description" content="{{ description or site.tagline }}">
-<meta property="og:url" content="{{ site.url }}{{ page.url }}">
-<meta property="og:image" content="{{ site.url }}{{ ogimg | url }}">
+<meta property="og:description" content="{{ pageDescription }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ ogimgUrl }}">
+<meta property="og:image:width" content="{{ ogimgW }}">
+<meta property="og:image:height" content="{{ ogimgH }}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="{{ ogimgAlt }}">
 <meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
+{% if xAccount.length %}<meta name="twitter:site" content="{{ xAccount[0] }}">
+<meta name="twitter:creator" content="{{ xAccount[0] }}">
+{% endif %}<meta name="twitter:image:alt" content="{{ ogimgAlt }}">
+
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon-32.png' | url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ '/feed.xml' | url }}">
+<link rel="preload" href="{{ '/assets/fonts/IBMPlexSerif-Regular.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/IBMPlexMono-Regular.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/IBMPlexMono-SemiBold.woff2' | url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
+
+{% set orgId = site.url + '/#organization' -%}
+{% set websiteId = site.url + '/#website' -%}
+{% set seriesId = site.url + '/#series' -%}
+{% set nodes = [] -%}
+{% set nodes = (nodes.push({
+  "@type": "WebSite",
+  "@id": websiteId,
+  "url": site.url,
+  "name": site.name,
+  "description": site.tagline,
+  "inLanguage": "en",
+  "publisher": { "@id": orgId }
+}), nodes) -%}
+{% set nodes = (nodes.push({
+  "@type": "Organization",
+  "@id": orgId,
+  "name": site.name,
+  "url": site.url,
+  "email": site.email,
+  "logo": site.url + ('/assets/img/apple-touch-icon.png' | url),
+  "sameAs": sameAs
+}), nodes) -%}
+{% if isFragment -%}
+{% set publishedOn = (declassified | isoDate) if declassified -%}
+{% set nodes = (nodes.push({
+  "@type": "CreativeWorkSeries",
+  "@id": seriesId,
+  "url": site.url,
+  "name": site.name,
+  "genre": "Fiction",
+  "inLanguage": "en",
+  "publisher": { "@id": orgId }
+}), nodes) -%}
+{% set nodes = (nodes.push({
+  "@type": ["CreativeWork", "ShortStory"],
+  "@id": canonical + "#fragment",
+  "url": canonical,
+  "name": title,
+  "description": pageDescription,
+  "genre": "Fiction",
+  "inLanguage": "en",
+  "datePublished": publishedOn,
+  "image": ogimgUrl,
+  "about": topic or null,
+  "isPartOf": { "@id": seriesId },
+  "author": { "@id": orgId },
+  "publisher": { "@id": orgId }
+}), nodes) -%}
+{% endif -%}
+{% if isFragment or isCase -%}
+{% set nodes = (nodes.push({
+  "@type": "BreadcrumbList",
+  "@id": canonical + "#breadcrumb",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "The Log", "item": site.url + ('/' | url) },
+    { "@type": "ListItem", "position": 2, "name": "Registry", "item": site.url + ('/archive/' | url) },
+    { "@type": "ListItem", "position": 3, "name": title or site.name, "item": canonical }
+  ]
+}), nodes) -%}
+{% endif -%}
+<script type="application/ld+json">{{ { "@context": "https://schema.org", "@graph": nodes } | dump | replace(r/</g, "\\u003c") | safe }}</script>
 </head>
 <body>
 <header class="site">
@@ -52,7 +142,10 @@
     <symbol id="i-rss" viewBox="0 0 24 24"><circle cx="6.2" cy="17.8" r="1.6" fill="currentColor" stroke="none"/><path d="M4.5 11.2a8.3 8.3 0 0 1 8.3 8.3M4.5 5.2a14.3 14.3 0 0 1 14.3 14.3"/></symbol>
   </svg>
   <div class="wrap foot-row">
-    <img class="badgephoto" src="{{ '/assets/img/badge-macro.jpg' | url }}" alt="Expedition badge: a horizontal line with an orange dot." loading="lazy">
+    <picture>
+      <source type="image/webp" srcset="{{ '/assets/img/badge-macro-112.webp' | url }} 1x, {{ '/assets/img/badge-macro-168.webp' | url }} 1.5x">
+      <img class="badgephoto" src="{{ '/assets/img/badge-macro-112.jpg' | url }}" srcset="{{ '/assets/img/badge-macro-112.jpg' | url }} 1x, {{ '/assets/img/badge-macro-168.jpg' | url }} 1.5x" width="56" height="56" alt="Expedition badge: a horizontal line with an orange dot." loading="lazy" decoding="async">
+    </picture>
     <span>{{ site.email }}</span>
     <span class="foot-icons">
     {% for c in site.channels %}<a class="icon" href="{{ c.url }}" target="_blank" rel="noopener me" aria-label="{{ c.label }} — {{ c.handle }}" title="{{ c.label }} · {{ c.handle }}"><svg><use href="#i-{{ c.label | lower }}"/></svg></a>{% endfor %}
