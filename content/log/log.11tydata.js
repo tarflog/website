@@ -12,12 +12,22 @@ const caseOf = (cases, slug) => {
   return null;
 };
 
+const topicOf = (data) => {
+  const own = data.topic;
+  if (typeof own === "string" && own.trim()) return own.trim();
+  const c = caseOf(data.cases, data.page.fileSlug);
+  return c && c.topic ? c.topic : null;
+};
+
 module.exports = {
   layout: "entry.njk",
   tags: ["logpage"],
   eleventyComputed: {
     caseFile: (data) => caseOf(data.cases, data.page.fileSlug),
+    topic: (data) => topicOf(data),
     title: (data) => {
+      const topic = topicOf(data);
+      if (topic) return `${topic} — fragment ${data.file}`;
       const c = caseOf(data.cases, data.page.fileSlug);
       return c
         ? `${c.subject} — fragment ${data.file}`

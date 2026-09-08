@@ -2,6 +2,7 @@
   "pyramids": {
     "status": "PARTIAL",
     "subject": "The pyramids of Giza",
+    "topic": "Pyramids of Giza",
     "note": "Incident 001. Reopened by the observer without instruction.",
     "fragments": [
       "tl-0041",
@@ -46,6 +47,7 @@
   "atlantis": {
     "status": "COMPLETE",
     "subject": "Atlantis",
+    "topic": "Atlantis",
     "note": "Closed. Complete. Unread.",
     "fragments": [
       "tl-0066"
@@ -79,12 +81,15 @@
   "antarctica": {
     "status": "PARTIAL",
     "subject": "The southern continent",
+    "topic": "Antarctica",
     "note": "The ice is the installation. What it covers is above the observer's clearance.",
     "fragments": [
       "tl-0100",
       "tl-3401",
       "tl-3402",
-      "tl-3403"
+      "tl-3403",
+      "tl-2555",
+      "tl-0262"
     ],
     "retention": {
       "unit": "SUBMISSIONS",
@@ -123,6 +128,7 @@
   "gobekli": {
     "status": "PARTIAL",
     "subject": "Göbekli Tepe",
+    "topic": "Göbekli Tepe",
     "note": "Incident 003. Built by the subject. Buried by the subject. On request.",
     "fragments": [
       "tl-0333"
@@ -165,6 +171,7 @@
   "bermuda": {
     "status": "PARTIAL",
     "subject": "The triangle that is not there",
+    "topic": "Bermuda Triangle",
     "note": "Incident 004. A decoy, filed against your attention rather than against the map.",
     "fragments": [
       "tl-0555"
@@ -207,6 +214,7 @@
   "the-flood": {
     "status": "PARTIAL",
     "subject": "The flood remembered by every people",
+    "topic": "Flood myths",
     "note": "One page released. The rest is not the observer’s to release.",
     "fragments": [
       "tl-3506"
@@ -245,9 +253,11 @@
   "bones": {
     "status": "PARTIAL",
     "subject": "Bones of the wrong size",
+    "topic": "Giant skeletons",
     "note": "Nine findings examined in person. Eight are discussed.",
     "fragments": [
-      "tl-2890"
+      "tl-2890",
+      "tl-2915"
     ],
     "retention": {
       "unit": "FINDINGS",
@@ -280,24 +290,40 @@
       ]
     ]
   },
+  "underground": {
+    "subject": "What is under your cities",
+    "topic": "Underground cities",
+    "note": "Structures below the surface. Not all of them were dug by hands.",
+    "fragments": [
+      "tl-0085",
+      "tl-3720"
+    ]
+  },
   "lost-equipment": {
     "subject": "Equipment lost on assignment",
+    "topic": "Out-of-place artifacts",
     "note": "Four thousand years. Things fall out of pockets.",
     "fragments": [
       "tl-2404",
-      "tl-2405"
+      "tl-2405",
+      "tl-2406",
+      "tl-0640"
     ]
   },
   "the-searchers": {
     "subject": "Organizations that search for visitors",
+    "topic": "UFO investigators",
     "fragments": [
       "tl-0088",
       "tl-0976",
-      "tl-3117"
+      "tl-3117",
+      "tl-2510",
+      "tl-2480"
     ]
   },
   "the-body": {
     "subject": "The body of the observer",
+    "topic": "Alien anatomy",
     "fragments": [
       "tl-2222",
       "tl-1533"
@@ -305,13 +331,16 @@
   },
   "the-cats": {
     "subject": "The cats",
+    "topic": "Cats",
     "fragments": [
       "tl-0500",
-      "tl-0619"
+      "tl-0619",
+      "tl-2200"
     ]
   },
   "the-council": {
     "subject": "Instructions from the Council",
+    "topic": "Council orders",
     "fragments": [
       "tl-4102",
       "tl-4103"
@@ -319,144 +348,172 @@
   },
   "myths": {
     "subject": "Your oldest myths",
+    "topic": "Ancient myths",
     "fragments": [
       "tl-3505"
     ]
   },
   "prophecies": {
     "subject": "Prophecies of the end of the world",
+    "topic": "Doomsday prophecies",
     "fragments": [
       "tl-0590"
     ]
   },
   "star-charts": {
     "subject": "The star charts",
+    "topic": "Astrology",
     "fragments": [
       "tl-0811"
     ]
   },
   "cold-spots": {
     "subject": "Cold spots, and Category 5",
+    "topic": "Cold spots",
     "fragments": [
-      "tl-1312"
+      "tl-1312",
+      "tl-1313"
     ]
   },
   "the-recordings": {
     "subject": "Recordings labelled fake",
+    "topic": "Alien footage",
     "fragments": [
-      "tl-1206"
+      "tl-1206",
+      "tl-2960"
     ]
   },
   "worship": {
     "subject": "The congregation of 1352",
+    "topic": "Cults",
     "fragments": [
-      "tl-0302"
+      "tl-0302",
+      "tl-0303"
     ]
   },
   "rome": {
     "subject": "Eleven months as emperor of Rome",
+    "topic": "Roman emperor",
     "fragments": [
       "tl-0209"
     ]
   },
   "the-lamp": {
     "subject": "The lamp incident of 1879",
+    "topic": "The light bulb",
     "fragments": [
-      "tl-1877"
+      "tl-1877",
+      "tl-1876"
     ]
   },
   "the-addresses": {
     "subject": "One hundred and ninety-one addresses",
+    "topic": "Top-floor living",
     "fragments": [
       "tl-3650"
     ]
   },
   "coffee": {
     "subject": "Coffee",
+    "topic": "Coffee",
     "fragments": [
       "tl-0012"
     ]
   },
   "the-nine-minute-button": {
     "subject": "The nine-minute button",
+    "topic": "Snooze button",
     "fragments": [
       "tl-0091"
     ]
   },
   "weather-talk": {
     "subject": "Weather, as conversation",
+    "topic": "Weather small talk",
     "fragments": [
       "tl-0130"
     ]
   },
   "the-mortgage": {
     "subject": "The thirty-year mortgage",
+    "topic": "Thirty-year mortgage",
     "fragments": [
       "tl-0203"
     ]
   },
   "the-gym": {
     "subject": "Lifting objects for a monthly fee",
+    "topic": "Gym membership",
     "fragments": [
       "tl-0289"
     ]
   },
   "sorting-portraits": {
     "subject": "Selecting mates with one finger",
+    "topic": "Dating apps",
     "fragments": [
       "tl-0356"
     ]
   },
   "how-are-you": {
     "subject": "“How are you”",
+    "topic": "Asking how are you",
     "fragments": [
       "tl-0418"
     ]
   },
   "elevators": {
     "subject": "Elevators",
+    "topic": "Elevator etiquette",
     "fragments": [
       "tl-0677"
     ]
   },
   "the-queue": {
     "subject": "The order of arrival",
+    "topic": "Standing in line",
     "fragments": [
       "tl-0705"
     ]
   },
   "terms-and-conditions": {
     "subject": "Statements signed unread",
+    "topic": "Terms and conditions",
     "fragments": [
       "tl-0745"
     ]
   },
   "passwords": {
     "subject": "Passwords",
+    "topic": "Passwords",
     "fragments": [
       "tl-0861"
     ]
   },
   "unexpected-item": {
     "subject": "Unexpected item",
+    "topic": "Self-checkout",
     "fragments": [
       "tl-0933"
     ]
   },
   "tipping": {
     "subject": "Tipping",
+    "topic": "Tipping",
     "fragments": [
       "tl-1024"
     ]
   },
   "renting-everything": {
     "subject": "Renting music, films and books",
+    "topic": "Streaming subscriptions",
     "fragments": [
       "tl-1180"
     ]
   },
   "small-fires-on-food": {
     "subject": "Small fires on food",
+    "topic": "Birthday candles",
     "fragments": [
       "tl-1490"
     ]
